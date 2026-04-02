@@ -1,0 +1,4230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechPulse — Tin tức công nghệ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #c8231a;
+  --red-dark: #a01912;
+  --navy: #0f1923;
+  --slate: #2c3e50;
+  --gray: #6b7280;
+  --gray-light: #9ca3af;
+  --border: #e5e7eb;
+  --bg: #f9f8f6;
+  --white: #ffffff;
+  --text: #1a1a1a;
+  --text2: #4b5563;
+  --sans: 'Outfit', sans-serif;
+  --serif: 'Newsreader', Georgia, serif;
+  --bar-h: 36px;
+  --header-h: 72px;
+  --nav-h: 44px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ━━━ NETWORK BAR ━━━ */
+.netbar {
+  background: var(--navy);
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 0;
+}
+.netbar-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5a7a94;
+  margin-right: 16px;
+  font-weight: 500;
+}
+.netbar-links { display: flex; gap: 0; }
+.netbar-links a {
+  font-size: 12px;
+  color: #8aabb9;
+  padding: 0 12px;
+  border-right: 1px solid #1e3040;
+  transition: color 0.15s;
+  font-weight: 400;
+}
+.netbar-links a:first-child { border-left: 1px solid #1e3040; }
+.netbar-links a:hover { color: #fff; }
+.netbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.netbar-right a {
+  font-size: 11px;
+  color: #5a7a94;
+  letter-spacing: 0.05em;
+  transition: color 0.15s;
+}
+.netbar-right a:hover { color: #8aabb9; }
+
+/* ━━━ HEADER ━━━ */
+.header {
+  background: var(--white);
+  border-bottom: 2px solid var(--red);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.logo-mark {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: -0.03em;
+}
+.logo-sub {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 2px;
+}
+.header-search {
+  flex: 1;
+  max-width: 360px;
+  position: relative;
+}
+.header-search input {
+  width: 100%;
+  height: 36px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 0 36px 0 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.header-search input:focus { border-color: var(--red); }
+.header-search input::placeholder { color: var(--gray-light); }
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray);
+  pointer-events: none;
+}
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-subscribe {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-subscribe:hover { background: var(--red-dark); }
+.btn-icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  color: var(--slate);
+  transition: all 0.2s;
+}
+.btn-icon:hover { border-color: var(--red); color: var(--red); }
+
+/* ━━━ NAV ━━━ */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8px 0 16px;
+  display: flex;
+  align-items: stretch;
+  height: var(--nav-h);
+  gap: 0;
+  position: relative;
+  /* Horizontal scroll on mobile */
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+.nav-item > a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  padding: 0 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: color 0.15s;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-item > a:hover,
+.nav-item.active > a { color: var(--red); border-bottom-color: var(--red); }
+.nav-item.hot > a { color: var(--red); }
+
+/* MEGA DROPDOWN — desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover .dropdown { display: block; }
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--red);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  min-width: 180px;
+  z-index: 200;
+  padding: 8px 0;
+}
+.dropdown a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.dropdown a:hover {
+  background: #fef2f2;
+  color: var(--red);
+  border-left-color: var(--red);
+  padding-left: 22px;
+}
+
+/* ━━━ LAYOUT ━━━ */
+.page { display: none; }
+.page.active { display: block; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ━━━ BREAKING TICKER ━━━ */
+.ticker {
+  background: var(--red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  position: relative;
+}
+.ticker.dismissed { height: 0; opacity: 0; pointer-events: none; }
+.ticker-close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.ticker-close:hover { color: #fff; }
+.ticker-label {
+  background: var(--red-dark);
+  padding: 0 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.ticker-track {
+  overflow: hidden;
+  flex: 1;
+}
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+}
+.ticker-inner span {
+  font-size: 12.5px;
+  padding: 0 32px;
+  font-weight: 400;
+}
+.ticker-inner span::before {
+  content: '◆';
+  margin-right: 10px;
+  font-size: 7px;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ━━━ LIST PAGE ━━━ */
+.list-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  padding: 28px 0 60px;
+}
+
+/* PAGE TITLE */
+.feed-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--text);
+}
+.feed-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+}
+.feed-count {
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 400;
+}
+
+/* ARTICLE CARD */
+.article-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: none;
+}
+.article-card:first-child { padding-top: 0; }
+.article-card:hover .card-title { color: var(--red); }
+.card-thumb {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background: #e5e7eb;
+  flex-shrink: 0;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.article-card:hover .card-thumb img { transform: scale(1.04); }
+.card-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #d1d5db;
+}
+.card-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card-cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  transition: color 0.2s;
+}
+.card-excerpt {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-meta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--gray-light);
+}
+.card-meta .dot { font-size: 4px; vertical-align: middle; }
+
+/* FEATURED CARD (top, large) */
+.featured-card {
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.featured-card:hover .feat-title { color: var(--red); }
+.feat-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #e5e7eb;
+  margin-bottom: 14px;
+}
+.feat-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.featured-card:hover .feat-thumb img { transform: scale(1.03); }
+.feat-cat {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 6px;
+}
+.feat-title {
+  font-family: var(--serif);
+  font-size: 24px; font-weight: 700;
+  line-height: 1.3; margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.feat-excerpt {
+  font-size: 14px; color: var(--text2); line-height: 1.6;
+  margin-bottom: 10px;
+}
+.feat-meta {
+  font-size: 12px; color: var(--gray-light);
+  display: flex; gap: 10px; align-items: center;
+}
+
+/* ━━━ SIDEBAR ━━━ */
+.sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+.widget { }
+.widget-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--text);
+  margin-bottom: 14px;
+}
+.trending-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.trending-item:last-child { border-bottom: none; }
+.trending-num {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  transition: color 0.2s;
+}
+.trending-item:hover .trending-num { color: var(--red); }
+.trending-text {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  transition: color 0.2s;
+}
+.trending-item:hover .trending-text { color: var(--red); }
+
+.cat-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cat-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cat-chip:hover { border-color: var(--red); color: var(--red); background: #fef2f2; }
+
+.newsletter-widget {
+  background: var(--navy);
+  padding: 20px;
+  color: #fff;
+}
+.newsletter-widget h4 {
+  font-family: var(--serif);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.newsletter-widget p {
+  font-size: 12.5px;
+  color: #8aabb9;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.newsletter-widget input {
+  width: 100%;
+  height: 36px;
+  background: #1e3040;
+  border: 1px solid #2a4a5e;
+  color: #fff;
+  padding: 0 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+.newsletter-widget input::placeholder { color: #5a7a94; }
+.newsletter-widget button {
+  width: 100%;
+  height: 36px;
+  background: var(--red);
+  border: none;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.newsletter-widget button:hover { background: var(--red-dark); }
+
+/* ━━━ ARTICLE DETAIL PAGE ━━━ */
+#detail-page { background: var(--white); }
+.detail-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 48px;
+  padding-top: 32px;
+  padding-bottom: 60px;
+}
+.detail-main {}
+
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+.breadcrumb a { color: var(--gray); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--gray-light); }
+
+/* ARTICLE HEADER */
+.article-cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+.article-h1 {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+.article-deck {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 3px solid var(--red);
+}
+.article-byline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.byline-author {
+  display: flex; align-items: center; gap: 10px;
+}
+.author-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.author-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.author-source { font-size: 11.5px; color: var(--gray); }
+.byline-meta { font-size: 12px; color: var(--gray); display: flex; gap: 14px; align-items: center; }
+.reading-time {
+  background: var(--bg);
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray);
+}
+
+/* SHARE ROW */
+.share-row {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.share-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  border: 1.5px solid var(--border);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  background: none;
+  border-radius: 3px;
+  transition: all 0.15s;
+}
+.share-btn:hover { background: var(--bg); }
+.share-btn.fb { border-color: #1877f2; color: #1877f2; }
+.share-btn.fb:hover { background: #e8f0fe; }
+
+/* RELATED TOP */
+.related-top {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+.related-top-title {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 10px;
+}
+.related-top-list { list-style: none; }
+.related-top-list li {
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 13px;
+}
+.related-top-list li:last-child { border-bottom: none; }
+.related-top-list a {
+  color: var(--slate);
+  transition: color 0.15s;
+  line-height: 1.4;
+  display: block;
+}
+.related-top-list a:hover { color: var(--red); }
+
+/* HERO IMAGE */
+.article-hero {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: #e5e7eb;
+}
+.article-hero img { width: 100%; height: 100%; object-fit: cover; }
+.article-caption {
+  font-size: 12px;
+  color: var(--gray);
+  font-style: italic;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* BODY TEXT */
+.article-body { font-size: 16px; line-height: 1.8; color: #1e1e1e; }
+.article-body p { margin-bottom: 18px; }
+.article-body h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 0 12px;
+  color: var(--text);
+}
+.article-body .inline-img {
+  margin: 24px 0;
+}
+.article-body .inline-img img {
+  width: 100%;
+  border: 1px solid var(--border);
+}
+.article-body .inline-img figcaption {
+  font-size: 12px;
+  color: var(--gray);
+  font-style: italic;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* AFFILIATE BLOCK */
+.affiliate-block {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 3px solid #f59e0b;
+  padding: 14px 18px;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 2px;
+}
+.affiliate-icon { font-size: 20px; flex-shrink: 0; }
+.affiliate-text { font-size: 13.5px; line-height: 1.5; }
+.affiliate-text a { color: var(--red); font-weight: 600; text-decoration: underline; }
+
+/* SOURCE ATTR */
+.source-attr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 24px 0;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.source-attr span { color: var(--gray); }
+.source-attr a { color: var(--red); font-weight: 600; }
+.source-copy-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: var(--sans);
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s;
+}
+.source-copy-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* TAGS */
+.tags-section { margin: 20px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tags-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+.tag-pill {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tag-pill:hover { border-color: var(--red); color: var(--red); }
+
+/* SAME CATEGORY */
+.same-cat { margin: 36px 0 0; }
+.same-cat-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--text);
+}
+.same-cat-header h3 { font-family: var(--serif); font-size: 18px; }
+.same-cat-header a { font-size: 12px; color: var(--red); }
+.same-cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.mini-card { cursor: pointer; }
+.mini-card:hover .mini-title { color: var(--red); }
+.mini-thumb {
+  aspect-ratio: 16/10; overflow: hidden;
+  background: #e5e7eb;
+  margin-bottom: 8px;
+}
+.mini-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.mini-card:hover .mini-thumb img { transform: scale(1.05); }
+.mini-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+.mini-title { font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--text); transition: color 0.2s; }
+.mini-time { font-size: 11px; color: var(--gray-light); margin-top: 4px; }
+
+/* DETAIL SIDEBAR */
+.detail-sidebar {}
+.sticky-sidebar { position: sticky; top: calc(var(--header-h) + var(--nav-h) + 20px); }
+
+/* DATE PICKER WIDGET */
+.date-picker {
+  border: 1px solid var(--border);
+  padding: 16px;
+  background: var(--bg);
+}
+.date-picker h4 {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+.date-picker-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.date-picker select {
+  height: 32px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text);
+  padding: 0 6px;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.date-picker button {
+  width: 100%;
+  height: 32px;
+  background: var(--red);
+  border: none;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+/* PROGRESS BAR */
+.reading-progress {
+  position: fixed;
+  top: 0; left: 0; width: 0%;
+  height: 3px;
+  background: var(--red);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ━━━ FOOTER ━━━ */
+footer {
+  background: var(--navy);
+  color: #8aabb9;
+  margin-top: 0;
+}
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 32px;
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {}
+.footer-logo-mark {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer-tagline {
+  font-size: 12px;
+  color: #5a7a94;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.footer-social { display: flex; gap: 8px; }
+.social-btn {
+  width: 32px; height: 32px;
+  background: #1e3040;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 3px;
+  color: #5a7a94;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.social-btn:hover { background: var(--red); color: #fff; }
+
+.footer-col h5 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1e3040;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a {
+  font-size: 13px;
+  color: #5a7a94;
+  transition: color 0.15s;
+}
+.footer-col a:hover { color: #8aabb9; }
+
+.footer-bottom {
+  border-top: 1px solid #1e3040;
+  padding: 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-bottom p { font-size: 12px; color: #3a5a70; }
+.footer-bottom a { color: #5a7a94; }
+.footer-legal {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+}
+.footer-legal a { color: #3a5a70; transition: color 0.15s; }
+.footer-legal a:hover { color: #5a7a94; }
+
+/* BACK TO TOP */
+.back-top {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 40px; height: 40px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 500;
+}
+.back-top.visible { opacity: 1; transform: translateY(0); }
+.back-top:hover { background: var(--red-dark); }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 80px; right: 28px;
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 13px;
+  border-radius: 3px;
+  border-left: 3px solid var(--red);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s;
+  z-index: 600;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .list-layout { grid-template-columns: 1fr; }
+  .detail-layout { grid-template-columns: 1fr; }
+  .sticky-sidebar { position: static; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .same-cat-grid { grid-template-columns: 1fr; }
+  .netbar { display: none; }
+}
+@media (max-width: 600px) {
+  .article-h1 { font-size: 24px; }
+  .article-card { grid-template-columns: 120px 1fr; gap: 12px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .header-search { display: none; }
+}
+
+/* Animate cards in */
+.article-card, .featured-card {
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.article-card:nth-child(1) { animation-delay: 0.05s; }
+.article-card:nth-child(2) { animation-delay: 0.10s; }
+.article-card:nth-child(3) { animation-delay: 0.15s; }
+.article-card:nth-child(4) { animation-delay: 0.20s; }
+.article-card:nth-child(5) { animation-delay: 0.25s; }
+.article-card:nth-child(6) { animation-delay: 0.30s; }
+
+/* ━━━ AUTH HEADER COMPONENTS ━━━ */
+.btn-outline {
+  background: none;
+  border: 1.5px solid var(--border);
+  padding: 7px 16px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--red); color: var(--red); }
+.user-avatar-btn {
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.15s;
+}
+.user-avatar-btn:hover { background: var(--bg); }
+.user-avatar-circle {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--red);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  z-index: 300;
+  border-radius: 0 0 4px 4px;
+}
+.user-dropdown.open { display: block; }
+.user-dropdown-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px;
+  background: var(--bg);
+}
+.user-dropdown-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex-shrink: 0;
+}
+.user-dropdown-divider { height: 1px; background: var(--border); margin: 4px 0; }
+.user-dropdown-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px; color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.user-dropdown-item:hover { background: #fef2f2; color: var(--red); }
+.user-dropdown-item.danger { color: #ef4444; }
+.user-dropdown-item.danger:hover { background: #fef2f2; }
+
+/* ━━━ AUTH PAGES LAYOUT ━━━ */
+.auth-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: var(--bg);
+}
+.auth-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.auth-logo {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.auth-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  margin-top: 20px;
+}
+.auth-subtitle {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.form-input {
+  width: 100%;
+  height: 44px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  padding: 0 14px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(200,35,26,0.08);
+}
+.form-input.error { border-color: #ef4444; }
+.form-input.success { border-color: #22c55e; }
+.form-error {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 5px;
+  display: none;
+}
+.form-error.show { display: block; }
+.form-hint { font-size: 12px; color: var(--gray); margin-top: 5px; }
+.password-wrap { position: relative; }
+.password-toggle {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  cursor: pointer; color: var(--gray); background: none; border: none;
+  padding: 2px;
+}
+.password-toggle:hover { color: var(--red); }
+.btn-auth {
+  width: 100%;
+  height: 46px;
+  background: var(--red);
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 4px;
+}
+.btn-auth:hover { background: var(--red-dark); }
+.btn-auth:active { transform: scale(0.99); }
+.btn-auth:disabled { background: #d1d5db; cursor: not-allowed; }
+.btn-auth.loading { position: relative; color: transparent; }
+.btn-auth.loading::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+.auth-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 20px 0;
+  font-size: 12px; color: var(--gray);
+}
+.auth-divider::before, .auth-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.social-login { display: flex; flex-direction: column; gap: 10px; }
+.btn-social {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 44px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  transition: all 0.15s;
+}
+.btn-social:hover { background: var(--bg); border-color: var(--gray-light); }
+.btn-social.google { }
+.btn-social.facebook { border-color: #1877f2; color: #1877f2; }
+.btn-social.facebook:hover { background: #e8f0fe; }
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--gray);
+}
+.auth-footer a { color: var(--red); font-weight: 600; cursor: pointer; }
+.auth-footer a:hover { text-decoration: underline; }
+.form-remember {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.form-checkbox-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text2); cursor: pointer;
+}
+.form-checkbox-row input[type=checkbox] { accent-color: var(--red); width: 15px; height: 15px; cursor: pointer; }
+.form-link { font-size: 13px; color: var(--red); font-weight: 600; cursor: pointer; }
+.form-link:hover { text-decoration: underline; }
+
+/* Password strength */
+.pw-strength { margin-top: 8px; }
+.pw-strength-bar {
+  height: 4px; border-radius: 2px; background: var(--border);
+  overflow: hidden; margin-bottom: 4px;
+}
+.pw-strength-fill {
+  height: 100%; border-radius: 2px;
+  transition: width 0.3s, background 0.3s;
+  width: 0%;
+}
+.pw-strength-text { font-size: 11px; color: var(--gray); }
+
+/* ━━━ PROFILE PAGE ━━━ */
+.profile-layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+}
+.profile-sidebar-nav { }
+.profile-avatar-section {
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.profile-big-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--red); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 700;
+  margin: 0 auto 12px;
+}
+.profile-name { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.profile-email { font-size: 12px; color: var(--gray); margin-bottom: 12px; }
+.profile-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid #fecaca;
+}
+.profile-menu { background: var(--white); border: 1px solid var(--border); overflow: hidden; }
+.profile-menu-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  font-size: 13px; color: var(--text2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.profile-menu-item:last-child { border-bottom: none; }
+.profile-menu-item:hover, .profile-menu-item.active {
+  background: #fef2f2; color: var(--red);
+}
+.profile-menu-item svg { flex-shrink: 0; }
+.profile-main { }
+.profile-tab { display: none; }
+.profile-tab.active { display: block; }
+.profile-section-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--text);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 12px; color: var(--gray); }
+.bookmark-item {
+  display: flex; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.bookmark-item:hover .bookmark-title { color: var(--red); }
+.bookmark-thumb {
+  width: 90px; height: 60px;
+  flex-shrink: 0; overflow: hidden; background: var(--border);
+}
+.bookmark-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.bookmark-cat { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+.bookmark-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; transition: color 0.2s; }
+.bookmark-time { font-size: 11px; color: var(--gray-light); margin-top: 4px; }
+.bookmark-remove {
+  margin-left: auto; flex-shrink: 0;
+  color: var(--gray-light); background: none; border: none;
+  cursor: pointer; padding: 4px; transition: color 0.15s;
+}
+.bookmark-remove:hover { color: #ef4444; }
+.settings-form { background: var(--white); border: 1px solid var(--border); padding: 24px; }
+.settings-section { margin-bottom: 28px; }
+.settings-section h4 { font-size: 14px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.settings-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn-save {
+  height: 40px; padding: 0 24px;
+  background: var(--red); border: none;
+  color: #fff; font-family: var(--sans); font-size: 13px; font-weight: 700;
+  border-radius: 3px; cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-save:hover { background: var(--red-dark); }
+
+/* ━━━ SEARCH PAGE ━━━ */
+.search-page-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+.search-bar-large {
+  position: relative;
+  margin-bottom: 28px;
+}
+.search-bar-large input {
+  width: 100%;
+  height: 52px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  padding: 0 52px 0 18px;
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-bar-large input:focus { border-color: var(--red); }
+.search-bar-large button {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 52px;
+  background: var(--red); border: none; border-radius: 0 4px 4px 0;
+  color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.search-bar-large button:hover { background: var(--red-dark); }
+.search-filters {
+  display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.search-filter-btn {
+  padding: 6px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  color: var(--text2); cursor: pointer; background: none;
+  transition: all 0.15s;
+}
+.search-filter-btn:hover, .search-filter-btn.active {
+  border-color: var(--red); color: var(--red); background: #fef2f2;
+}
+.search-meta { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
+.search-meta strong { color: var(--text); }
+.search-result-item {
+  display: flex; gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.search-result-item:hover .search-result-title { color: var(--red); }
+.search-result-thumb {
+  width: 140px; height: 90px;
+  flex-shrink: 0; overflow: hidden; background: var(--border);
+}
+.search-result-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.search-result-cat { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+.search-result-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; margin-bottom: 6px; transition: color 0.2s; }
+.search-result-excerpt { font-size: 13px; color: var(--text2); line-height: 1.55; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.search-result-meta { font-size: 11.5px; color: var(--gray-light); }
+.search-highlight { background: #fef08a; border-radius: 2px; padding: 0 2px; }
+
+/* ━━━ 404 PAGE ━━━ */
+.notfound-page {
+  min-height: calc(100vh - 200px);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 40px 24px;
+  background: var(--bg);
+}
+.notfound-code {
+  font-family: var(--serif);
+  font-size: 120px; font-weight: 700;
+  color: var(--border); line-height: 1;
+  margin-bottom: 8px;
+}
+.notfound-code span { color: var(--red); }
+.notfound-title { font-family: var(--serif); font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+.notfound-text { font-size: 15px; color: var(--gray); margin-bottom: 28px; max-width: 400px; }
+.btn-home {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px;
+  background: var(--red); color: #fff;
+  border: none; border-radius: 3px;
+  font-family: var(--sans); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: background 0.2s;
+}
+.btn-home:hover { background: var(--red-dark); }
+
+/* SUCCESS OVERLAY */
+.success-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,25,35,0.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.success-overlay.show { opacity: 1; pointer-events: all; }
+.success-card {
+  background: var(--white);
+  border-top: 3px solid #22c55e;
+  padding: 40px;
+  text-align: center;
+  max-width: 380px; width: 90%;
+  transform: scale(0.95);
+  transition: transform 0.3s;
+}
+.success-overlay.show .success-card { transform: scale(1); }
+.success-icon { font-size: 48px; margin-bottom: 12px; }
+.success-title { font-family: var(--serif); font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.success-text { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+
+@media (max-width: 700px) {
+  .auth-card { padding: 28px 20px; }
+  .profile-layout { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(3,1fr); }
+  .settings-row { grid-template-columns: 1fr; }
+}
+
+/* ━━━ NEWSLETTER TOPIC CHIPS ━━━ */
+.nl-topic-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--text2);
+  background: none;
+  user-select: none;
+}
+.nl-topic-chip.active {
+  border-color: var(--red);
+  color: var(--red);
+  background: #fef2f2;
+  font-weight: 600;
+}
+
+/* ━━━ SEARCH SKELETON ━━━ */
+.search-skeleton {
+  display: flex; gap: 16px; padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.skeleton-box {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 2px;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.search-result-item { animation: fadeUp 0.3s ease both; }
+/* ━━━ BACK BUTTON ━━━ */
+.page-back-bar {
+  display: none;
+  align-items: center;
+  gap: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 44px;
+  position: sticky;
+  top: calc(var(--header-h) + var(--nav-h));
+  z-index: 90;
+}
+.page-back-bar.visible { display: flex; }
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  padding: 0 12px 0 0;
+  height: 100%;
+  border-right: 1px solid var(--border);
+  margin-right: 14px;
+  transition: color 0.15s;
+}
+.btn-back:hover { color: var(--red); }
+.btn-back svg { transition: transform 0.2s; }
+.btn-back:hover svg { transform: translateX(-3px); }
+.back-breadcrumb {
+  font-size: 12px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.back-breadcrumb a { color: var(--gray); cursor: pointer; transition: color 0.15s; }
+.back-breadcrumb a:hover { color: var(--red); }
+.back-breadcrumb span { color: var(--gray-light); }
+</style>
+<script>
+// ━━━ IMAGE PLACEHOLDER (sandbox fallback) ━━━
+function imgError(img) {
+  img.onerror = null; // prevent infinite loop
+  const alt = img.alt || img.getAttribute('alt') || 'Hinh anh';
+  const colors = ['#3b82f6','#8b5cf6','#10b981','#f59e0b','#06b6d4','#ef4444','#6b7280','#f97316','#c8231a','#0f1923'];
+  let hash = 0;
+  for (let i = 0; i < alt.length; i++) hash = (hash * 31 + alt.charCodeAt(i)) | 0;
+  const color = colors[Math.abs(hash) % colors.length];
+  const label = alt.length > 22 ? alt.slice(0, 22) + '...' : alt;
+  const safeLabel = label.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250">` +
+    `<rect width="400" height="250" fill="${color}18"/>` +
+    `<rect width="400" height="3" fill="${color}"/>` +
+    `<rect y="247" width="400" height="3" fill="${color}"/>` +
+    `<text x="200" y="118" font-family="sans-serif" font-size="28" fill="${color}" text-anchor="middle" opacity="0.3">IMG</text>` +
+    `<text x="200" y="148" font-family="sans-serif" font-size="12" fill="${color}" text-anchor="middle" font-weight="600">${safeLabel}</text>` +
+    `</svg>`;
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+</script>
+</head>
+<body>
+
+<div class="reading-progress" id="readingBar"></div>
+
+<!-- ━━━ NETWORK BAR ━━━ -->
+<div class="netbar">
+  <span class="netbar-label">Mạng lưới</span>
+  <div class="netbar-links">
+    <a href="javascript:void(0)">GameZone</a>
+    <a href="javascript:void(0)">TrendVN</a>
+    <a href="javascript:void(0)">BizDaily</a>
+    <a href="javascript:void(0)">AutoVN</a>
+  </div>
+  <div class="netbar-right">
+    <a href="javascript:void(0)" onclick="showPage('login')">Đăng nhập</a>
+    <a href="javascript:void(0)" onclick="showPage('register')">Đăng ký</a>
+  </div>
+</div>
+
+<!-- ━━━ HEADER ━━━ -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('list')">
+      <div class="logo-mark">TechPulse</div>
+      <div class="logo-sub">Tin tức công nghệ</div>
+    </div>
+    <div class="header-search">
+      <input type="text" placeholder="Tìm kiếm tin tức, sản phẩm...">
+      <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    </div>
+    <div class="header-right" id="headerRight">
+      <!-- Guest state — sẽ toggle bằng JS -->
+      <div id="guestButtons" style="display:flex;align-items:center;gap:8px;">
+        <button class="btn-outline" onclick="showPage('login')">Đăng nhập</button>
+        <button class="btn-subscribe" onclick="showPage('register')">Đăng ký</button>
+      </div>
+      <!-- Auth state (hidden by default) -->
+      <div id="userMenu" style="display:none;align-items:center;gap:10px;">
+        <div class="btn-icon" title="Tìm kiếm" onclick="showPage('search')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="user-avatar-btn" onclick="toggleUserDropdown()" id="userAvatarBtn">
+          <div class="user-avatar-circle" id="userAvatarCircle">T</div>
+          <span id="userDisplayName" style="font-size:13px;font-weight:600;color:var(--text);">Người dùng</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gray)"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-avatar" id="userDropdownAvatar">T</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;" id="userDropdownName">Người dùng</div>
+              <div style="font-size:11px;color:var(--gray);" id="userDropdownEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6b3b5a3b486a3aba7afaae8a5a9ab">[email&#160;protected]</a></div>
+            </div>
+          </div>
+          <div class="user-dropdown-divider"></div>
+          <a class="user-dropdown-item" onclick="showPage('profile')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Tài khoản của tôi
+          </a>
+          <a class="user-dropdown-item" onclick="showPage('profile')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            Bài đã lưu
+          </a>
+          <a class="user-dropdown-item" onclick="showPage('profile')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.89 3.04M4.93 4.93a10 10 0 0 0-1.89 3.04M4.93 19.07a10 10 0 0 0 3.04 1.89M19.07 19.07a10 10 0 0 1-3.04 1.89"/></svg>
+            Cài đặt
+          </a>
+          <div class="user-dropdown-divider"></div>
+          <a class="user-dropdown-item danger" onclick="logout()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            Đăng xuất
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="nav-item hot">
+        <a href="javascript:void(0)" onclick="showPage('list');return false;">Tin Hot</a>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Mobile')">Mobile</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Điện thoại</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Máy tính bảng</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Phụ kiện</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('AI')">AI</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">ChatGPT & OpenAI</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Gemini & Google</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Ứng dụng AI</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Tin ICT')">Tin ICT</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Thị trường</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Bảo mật</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Khởi nghiệp</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Internet')">Internet</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Digital Marketing</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Mạng xã hội</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Media</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Khám phá')">Khám phá</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Lịch sử công nghệ</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Tri thức</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Khoa học</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Xe')">Xe</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Ô tô điện</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Xe máy</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Thử nghiệm</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showPage('list')">Apps &amp; Game</a>
+      </div>
+      <div class="nav-item">
+        <a href="javascript:void(0)" onclick="showCategoryPage('Đồ chơi số')">Đồ chơi số</a>
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="showPage('list')">Laptop &amp; PC</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Màn hình</a>
+          <a href="javascript:void(0)" onclick="showPage('list')">Gia dụng thông minh</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━ BACK BAR (shown on non-list pages) ━━━ -->
+<div class="page-back-bar" id="backBar">
+  <button class="btn-back" onclick="goBack()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Quay lại
+  </button>
+  <div class="back-breadcrumb" id="backBreadcrumb">
+    <a onclick="showPage('list')">Trang chủ</a>
+  </div>
+</div>
+
+<!-- ━━━ BREAKING TICKER ━━━ -->
+<div class="ticker" id="tickerBar">
+  <div class="ticker-label">NONG</div>
+  <div class="ticker-track">
+    <div class="ticker-inner">
+      <span>Samsung Galaxy S26 Ultra hỗ trợ Quick Share với iPhone tại Việt Nam</span>
+      <span>OpenAI đóng cửa Sora sau 4 tháng — Disney mất hợp đồng 1 tỷ USD</span>
+      <span>Intel Core Ultra 7 270K Plus: Hiệu năng gaming cải thiện 23% so với thế hệ trước</span>
+      <span>Microsoft loại bỏ Copilot khỏi taskbar Windows 11 sau phản hồi tiêu cực</span>
+      <span>HONOR 600 Pro lộ diện: Pin silicon 9000mAh, thiết kế camera ngang như iPhone 17 Pro</span>
+      <span>Samsung Galaxy S26 Ultra hỗ trợ Quick Share với iPhone tại Việt Nam</span>
+      <span>OpenAI đóng cửa Sora sau 4 tháng — Disney mất hợp đồng 1 tỷ USD</span>
+      <span>Intel Core Ultra 7 270K Plus: Hiệu năng gaming cải thiện 23% so với thế hệ trước</span>
+      <span>Microsoft loại bỏ Copilot khỏi taskbar Windows 11 sau phản hồi tiêu cực</span>
+      <span>HONOR 600 Pro lộ diện: Pin silicon 9000mAh, thiết kế camera ngang như iPhone 17 Pro</span>
+    </div>
+  </div>
+  <button class="ticker-close" onclick="dismissTicker()" title="Đóng">&#x2715;</button>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: LIST                     -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="list-page" class="page active">
+  <div class="container">
+    <div class="list-layout">
+
+      <!-- MAIN FEED -->
+      <main>
+        <div class="feed-header">
+          <h1 class="feed-title">Tin Hot</h1>
+          <span class="feed-count">Cập nhật liên tục · Hôm nay 27/03/2026</span>
+        </div>
+
+        <!-- FEATURED -->
+        <div class="featured-card" onclick="showPage('detail')">
+          <div class="feat-thumb">
+            <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80" alt="Samsung Galaxy S26" onerror="imgError(this)">
+          </div>
+          <div class="feat-cat">Mobile</div>
+          <div class="feat-title">"Thành trì" cuối cùng ngăn người dùng iPhone chuyển sang Galaxy vừa bị phá vỡ tại Việt Nam</div>
+          <div class="feat-excerpt">Người dùng Galaxy S26 Series tại Việt Nam đã có thể chuyển file trực tiếp với iPhone và MacBook qua Quick Share — tính năng từng là độc quyền của hệ sinh thái Apple.</div>
+          <div class="feat-meta">
+            <span>Phạm Hoàng</span>
+            <span>·</span>
+            <span>25/03/2026 · 19:06</span>
+            <span>·</span>
+            <span>4 phút đọc</span>
+          </div>
+        </div>
+
+        <!-- CARDS -->
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=500&q=80" alt="OpenAI" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">AI</div>
+            <div class="card-title">OpenAI đột ngột khai tử công cụ tạo video Sora, Disney "ngỡ ngàng" khi thỏa thuận 1 tỷ USD bay màu</div>
+            <div class="card-excerpt">Quyết định đóng cửa Sora sau chỉ 4 tháng hoạt động khiến nhiều đối tác chiến lược phải ngay lập tức xem xét lại kế hoạch dài hạn với OpenAI.</div>
+            <div class="card-meta">
+              <span>AI·</span>
+              <span>25/03/2026 · 08:45</span>
+              <span class="dot">●</span>
+              <span>3 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?w=500&q=80" alt="Intel" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Tin ICT</div>
+            <div class="card-title">Trải nghiệm Core Ultra 7 270K Plus: Một lời khẳng định "Chúng tôi đã trở lại" từ Intel?</div>
+            <div class="card-excerpt">Core Ultra 7 270K Plus có thể là bước đi cho thấy Intel đang dần lấy lại vị thế trong phân khúc gaming cao cấp sau giai đoạn khó khăn.</div>
+            <div class="card-meta">
+              <span>Tin ICT·</span>
+              <span>23/03/2026 · 23:05</span>
+              <span class="dot">●</span>
+              <span>5 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=500&q=80" alt="Android" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Mobile</div>
+            <div class="card-title">Điện thoại HONOR trở lại mạnh mẽ: Top 3 model thống trị bảng xếp hạng hiệu năng AnTuTu</div>
+            <div class="card-excerpt">HONOR đang khiến cả thị trường smartphone phải ngoái nhìn với màn lột xác ngoạn mục trong suốt 2 năm trở lại đây.</div>
+            <div class="card-meta">
+              <span>Mobile·</span>
+              <span>23/03/2026 · 20:30</span>
+              <span class="dot">●</span>
+              <span>3 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80" alt="Windows" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Internet</div>
+            <div class="card-title">Chấm dứt kỷ nguyên "Microslop": Microsoft dọn dẹp mớ bòng bong AI trên Windows 11</div>
+            <div class="card-excerpt">Sau nhiều năm nhồi nhét Copilot vào mọi ngóc ngách, Microsoft cuối cùng cũng phải thừa nhận sai lầm và rút lại hàng loạt tính năng AI gây tranh cãi.</div>
+            <div class="card-meta">
+              <span>Internet·</span>
+              <span>24/03/2026 · 20:26</span>
+              <span class="dot">●</span>
+              <span>4 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="MacBook" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Đồ chơi số</div>
+            <div class="card-title">Mở 60 ứng dụng cùng lúc, MacBook Neo 8GB không sập trong khi laptop Windows "sập màn hình"</div>
+            <div class="card-excerpt">Hardware Canucks mở 60 ứng dụng cùng lúc trên MacBook Neo 8GB và ghi nhận máy không sập, trong khi laptop Windows bị mất màn hình đột ngột.</div>
+            <div class="card-meta">
+              <span>Đồ chơi số·</span>
+              <span>24/03/2026 · 16:30</span>
+              <span class="dot">●</span>
+              <span>3 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card" onclick="showPage('detail')">
+          <div class="card-thumb">
+            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&q=80" alt="Bitcoin" onerror="imgError(this)">
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Trà đá công nghệ</div>
+            <div class="card-title">Từng có người đào được 184 tỷ Bitcoin trong một ngày và mất sạch chỉ sau vài giờ</div>
+            <div class="card-excerpt">Sự cố suýt chút nữa đã khai tử Bitcoin ngay từ trong giai đoạn mới khai sinh — câu chuyện ít ai biết về lỗ hổng ngàn tỷ trong lịch sử crypto.</div>
+            <div class="card-meta">
+              <span>Trà đá·</span>
+              <span>23/03/2026 · 20:44</span>
+              <span class="dot">●</span>
+              <span>6 phút đọc</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOAD MORE -->
+        <div style="text-align:center;padding:28px 0;">
+          <button onclick="loadMoreArticles(this)" style="background:none;border:1.5px solid var(--border);padding:10px 32px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;border-radius:3px;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">Xem thêm bài viết</button>
+        </div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <!-- TRENDING -->
+        <div class="widget">
+          <div class="widget-title">Đọc nhiều nhất</div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">01</div>
+            <div class="trending-text">Samsung Galaxy S26 Ultra hỗ trợ Quick Share với iPhone — rào cản cuối cùng đã biến mất</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">02</div>
+            <div class="trending-text">OpenAI đóng cửa Sora chỉ sau 4 tháng, Disney mất hợp đồng 1 tỷ USD</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">03</div>
+            <div class="trending-text">Người đào được 184 tỷ Bitcoin trong một ngày và mất sạch sau vài giờ</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">04</div>
+            <div class="trending-text">Microsoft xóa Copilot khỏi taskbar sau làn sóng phàn nàn của người dùng</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">05</div>
+            <div class="trending-text">MacBook Neo 8GB chạy 60 app cùng lúc mà không sập — Windows thất bại hoàn toàn</div>
+          </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="widget">
+          <div class="widget-title">Chủ đề</div>
+          <div class="cat-chips">
+            <div class="cat-chip" onclick="filterByCategory('mobile','Mobile')">Mobile</div>
+            <div class="cat-chip" onclick="filterByCategory('ai','AI')">AI</div>
+            <div class="cat-chip" onclick="filterByCategory('tin-ict','Tin ICT')">Tin ICT</div>
+            <div class="cat-chip" onclick="filterByCategory('internet','Internet')">Internet</div>
+            <div class="cat-chip" onclick="filterByCategory('xe','Xe')">Xe</div>
+            <div class="cat-chip" onclick="filterByCategory('kham-pha','Khám phá')">Khám phá</div>
+            <div class="cat-chip" onclick="filterByCategory('apps-game','Apps &amp; Game')">Apps &amp; Game</div>
+            <div class="cat-chip" onclick="filterByCategory('do-choi-so','Đồ chơi số')">Đồ chơi số</div>
+            <div class="cat-chip" onclick="filterByCategory('tra-da','Trà đá CN')">Trà đá CN</div>
+          </div>
+        </div>
+
+        <!-- NEWSLETTER WIDGET — API #17 fully built -->
+        <div class="newsletter-widget" id="nlWidget">
+          <div id="nlWidgetDefault">
+            <h4>Nhận bản tin hàng ngày</h4>
+            <p>Tóm tắt tin công nghệ quan trọng nhất trong ngày, gửi lúc 8:00 sáng.</p>
+            <input type="email" id="nlSidebarEmail" placeholder="email@cua-ban.com" oninput="nlSidebarClearError()" style="border-color:#2a4a5e;">
+            <div id="nlSidebarErr" style="font-size:11px;color:#f87171;margin:-4px 0 8px;display:none;">Email không hợp lệ hoặc đã đăng ký.</div>
+            <button id="nlSidebarBtn" onclick="nlSidebarSubmit()">Đăng ký miễn phí</button>
+            <div style="font-size:10px;color:#3a5a70;margin-top:8px;text-align:center;">
+              Không spam · Hủy bất cứ lúc nào · <span style="cursor:pointer;text-decoration:underline;" onclick="showPage('newsletter')">Xem mẫu bản tin</span>
+            </div>
+          </div>
+          <div id="nlWidgetSuccess" style="display:none;text-align:center;padding:8px 0;">
+            <div style="margin-bottom:8px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8aabb9" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div style="font-weight:700;margin-bottom:4px;">Đăng ký thành công!</div>
+            <div style="font-size:12px;color:#8aabb9;line-height:1.5;">Kiểm tra email để xác nhận. Bản tin đầu tiên sẽ đến vào 8:00 sáng mai.</div>
+          </div>
+        </div>
+
+        <!-- MINI ADS PLACEHOLDER -->
+        <div style="background:#f3f4f6;border:1px dashed #d1d5db;height:250px;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:12px;letter-spacing:0.1em;">
+          QUẢNG CÁO · 300×250
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: DETAIL                   -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="detail-page" class="page" style="background:var(--white);">
+  <div class="detail-layout">
+
+    <!-- MAIN CONTENT -->
+    <article class="detail-main">
+
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb">
+        <a href="javascript:void(0)" onclick="showPage('list');return false;">Trang chủ</a>
+        <span>›</span>
+        <a href="javascript:void(0)" onclick="showPage('list')">Mobile</a>
+        <span>›</span>
+        <span style="color:var(--text2)">"Thành trì" cuối cùng…</span>
+      </nav>
+
+      <!-- CAT + HEADLINE -->
+      <div class="article-cat">Mobile</div>
+      <h1 class="article-h1">"Thành trì" cuối cùng ngăn cản người dùng iPhone chuyển sang điện thoại Galaxy vừa bị phá vỡ ở Việt Nam</h1>
+
+      <!-- DECK -->
+      <p class="article-deck">Người dùng Galaxy S26 Series tại Việt Nam đã bắt đầu nhận bản cập nhật mở khóa khả năng chuyển file trực tiếp với iPhone và MacBook qua Quick Share — tính năng mà trước đây chỉ dành riêng cho hệ sinh thái Apple.</p>
+
+      <!-- BYLINE -->
+      <div class="article-byline">
+        <div class="byline-author">
+          <div class="author-avatar">PH</div>
+          <div>
+            <div class="author-name">Phạm Hoàng</div>
+            <div class="author-source">Nguồn: ĐSPL</div>
+          </div>
+        </div>
+        <div class="byline-meta">
+          <span>25/03/2026 · 19:06</span>
+          <span class="reading-time">4 phút đọc</span>
+        </div>
+      </div>
+
+      <!-- SHARE -->
+      <div class="share-row">
+        <button class="share-btn fb" onclick="shareFacebook()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </button>
+        <button class="share-btn" onclick="copyLink('page')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Sao chép link
+        </button>
+        <button class="share-btn" onclick="copyLink('source')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Link gốc
+        </button>
+      </div>
+
+      <!-- RELATED TOP -->
+      <div class="related-top">
+        <div class="related-top-title">Xem thêm trong chuyên mục</div>
+        <ul class="related-top-list">
+          <li><a href="javascript:void(0)" onclick="showPage('list')">Điện thoại phím cứng như BlackBerry thêm phiên bản Pro cấu hình mạnh, giá đặt sớm chưa đến 13 triệu</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('list')">HONOR 600 và 600 Pro lộ diện với thiết kế mặt lưng na ná iPhone 17 Pro, pin silicon 9000mAh</a></li>
+          <li><a href="javascript:void(0)" onclick="showPage('list')">Tecno Spark 50 5G lộ diện với pin khổng lồ 6500mAh và thiết kế cụm camera mới</a></li>
+        </ul>
+      </div>
+
+      <!-- HERO IMAGE -->
+      <figure class="article-hero">
+        <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=900&q=80" alt="Samsung Galaxy S26 Ultra" onerror="imgError(this)">
+      </figure>
+      <div class="article-caption">Galaxy S26 Ultra và iPhone — hai hệ sinh thái giờ đây có thể chia sẻ file trực tiếp. Ảnh minh họa.</div>
+
+      <!-- BODY -->
+      <div class="article-body">
+        <p>Samsung vừa chính thức triển khai bản cập nhật cho dòng Galaxy S26 tại Việt Nam hôm nay, mang theo tính năng được nhiều người dùng Android chờ đợi từ lâu: Quick Share tương thích AirDrop, cho phép trao đổi ảnh, video và file trực tiếp với thiết bị Apple mà không cần app hay dịch vụ đám mây trung gian.</p>
+
+        <h3>Cách bật và sử dụng</h3>
+        <p>Tính năng không tự bật sau khi cập nhật. Để kích hoạt, vào <strong>Cài đặt → Các thiết bị kết nối → Chia sẻ nhanh</strong>, sau đó bật tùy chọn "Chia sẻ với các thiết bị Apple". Cần lưu ý thêm là cả hai thiết bị — Samsung lẫn iPhone hay MacBook — đều phải đặt chế độ hiển thị ở "Tất cả mọi người" thì mới tìm thấy nhau được.</p>
+
+        <figure class="inline-img">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Cài đặt Quick Share" onerror="imgError(this)">
+          <figcaption>Giao diện cài đặt Quick Share trên Galaxy S26 Ultra sau khi cập nhật.</figcaption>
+        </figure>
+
+        <p>Máy cũng cần Google Play Services phiên bản 26.11 trở lên. Nếu vừa cập nhật mà chưa thấy tùy chọn, kiểm tra lại phiên bản Play Services trong cài đặt ứng dụng và cập nhật thêm nếu cần.</p>
+
+        <h3>Thử thực tế: Gửi nhận như thường, không có gì khác biệt</h3>
+        <p>Sau khi bật tính năng, trải nghiệm thực tế gần như giống hệt dùng Quick Share hay AirDrop thông thường. Từ Galaxy S26 Ultra, chọn ảnh hoặc file, nhấn chia sẻ, chọn Quick Share — iPhone và MacBook gần đó hiện ra ngay trong danh sách thiết bị nhận.</p>
+
+        <p>Các file đều được chuyển qua WiFi, không có bước đăng nhập, không cần mở app thêm, không cần internet — kết nối hoàn toàn ngang hàng trực tiếp giữa hai máy. Chiều ngược lại từ iPhone hay MacBook gửi sang Galaxy S26 cũng đã hoạt động.</p>
+
+        <h3>Thành trì Apple đã thực sự bị phá</h3>
+        <p>Khả năng chuyển file nhanh trong hệ sinh thái là một trong những lý do khiến nhiều người ngại rời iPhone dù muốn thử Android. AirDrop tiện, nhanh và không cần làm gì thêm — đó là thứ Android mãi không có được cho đến gần đây.</p>
+
+        <p>Samsung không phải hãng đầu tiên làm điều này. Google đã đưa tính năng tương tự lên Pixel 10 từ tháng 11/2025, sau đó cập nhật thêm cho Pixel 9 vào tháng 2/2026. OPPO cũng đã thông báo hỗ trợ. Nhưng với độ phủ lớn của dòng Galaxy S tại Việt Nam, bản cập nhật này có ý nghĩa thực tế hơn hẳn với người dùng trong nước.</p>
+      </div>
+
+      <!-- AFFILIATE -->
+      <div class="affiliate-block">
+        <div class="affiliate-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <div class="affiliate-text">Tham khảo giá, thông tin và đặt mua <strong>Galaxy S26 Series</strong> chính hãng, giá tốt <a href="javascript:void(0)" onclick="openExternal('https://shopee.vn/search?keyword=samsung+galaxy+s26')">TẠI ĐÂY →</a></div>
+      </div>
+
+      <!-- SOURCE ATTR -->
+      <div class="source-attr">
+        <span>Theo</span>
+        <a href="javascript:void(0)" onclick="openExternal('https://doisongphapluat.nguoiduatin.vn')">ĐSPL</a>
+        <button class="source-copy-btn" onclick="copyLink('page')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy link bài Genk
+        </button>
+        <button class="source-copy-btn" onclick="copyLink('source')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Lấy link gốc
+        </button>
+      </div>
+
+      <!-- TAGS -->
+      <div class="tags-section">
+        <span class="tags-label">Tags:</span>
+        <span class="tag-pill" onclick="searchByTag('AirDrop')">AirDrop</span>
+        <span class="tag-pill" onclick="searchByTag('Samsung')">Samsung</span>
+        <span class="tag-pill" onclick="searchByTag('Galaxy S26')">Galaxy S26 Ultra</span>
+        <span class="tag-pill" onclick="searchByTag('Quick Share')">Quick Share</span>
+        <span class="tag-pill" onclick="searchByTag('iPhone')">iPhone</span>
+      </div>
+
+      <!-- SAME CATEGORY -->
+      <div class="same-cat">
+        <div class="same-cat-header">
+          <h3>Cùng chuyên mục</h3>
+          <a href="javascript:void(0)" onclick="showPage('list')">Xem tất cả →</a>
+        </div>
+        <div class="same-cat-grid">
+          <div class="mini-card" onclick="showPage('detail')">
+            <div class="mini-thumb">
+              <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400&q=80" alt="" onerror="imgError(this)">
+            </div>
+            <div class="mini-cat">Mobile</div>
+            <div class="mini-title">HONOR 600 và 600 Pro lộ diện: Pin silicon 9000mAh, thiết kế na ná iPhone 17 Pro</div>
+            <div class="mini-time">24/03/2026 · 17:32</div>
+          </div>
+          <div class="mini-card" onclick="showPage('detail')">
+            <div class="mini-thumb">
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80" alt="" onerror="imgError(this)">
+            </div>
+            <div class="mini-cat">Mobile</div>
+            <div class="mini-title">Điện thoại phím cứng như BlackBerry thêm bản Pro cấu hình mạnh, giá chưa đến 13 triệu</div>
+            <div class="mini-time">25/03/2026 · 10:02</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- DETAIL SIDEBAR -->
+    <aside class="detail-sidebar">
+      <div class="sticky-sidebar">
+
+        <!-- TRENDING -->
+        <div class="widget" style="margin-bottom:24px;">
+          <div class="widget-title">Đọc nhiều nhất</div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">01</div>
+            <div class="trending-text">Samsung Quick Share giờ kết nối được với iPhone — chuyển file không cần app</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">02</div>
+            <div class="trending-text">OpenAI đóng cửa Sora — Disney mất 1 tỷ USD thỏa thuận chiến lược</div>
+          </div>
+          <div class="trending-item" onclick="showPage('detail')">
+            <div class="trending-num">03</div>
+            <div class="trending-text">Intel Core Ultra 7 270K Plus: Comeback hay chỉ là vá lỗi?</div>
+          </div>
+        </div>
+
+        <!-- DATE PICKER -->
+        <div class="date-picker" style="margin-bottom:24px;">
+          <h4>Xem tin theo ngày</h4>
+          <div class="date-picker-row">
+            <select id="dpDay">
+              <option value="">Ngày</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+              <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+              <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+              <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+              <option>31</option>
+            </select>
+            <select id="dpMonth">
+              <option value="">Tháng</option>
+              <option>T1</option><option>T2</option><option>T3</option><option>T4</option>
+              <option>T5</option><option>T6</option><option>T7</option><option>T8</option>
+              <option>T9</option><option>T10</option><option>T11</option><option>T12</option>
+            </select>
+            <select id="dpYear">
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+            </select>
+          </div>
+          <button onclick="filterByDate()">Xem</button>
+        </div>
+
+        <!-- AD -->
+        <div style="background:#f3f4f6;border:1px dashed #d1d5db;height:250px;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:12px;letter-spacing:0.1em;">
+          QUẢNG CÁO · 300×250
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: LOGIN                    -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="login-page" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo" onclick="showPage('list')">TechPulse</div>
+      <h2 class="auth-title">Đăng nhập</h2>
+      <p class="auth-subtitle">Chào mừng trở lại! Đăng nhập để đọc bài không giới hạn và lưu bài viết yêu thích.</p>
+
+      <!-- SOCIAL -->
+      <div class="social-login">
+        <button class="btn-social google" onclick="socialLogin('Google')">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Tiếp tục với Google
+        </button>
+        <button class="btn-social facebook" onclick="socialLogin('Facebook')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Tiếp tục với Facebook
+        </button>
+      </div>
+
+      <div class="auth-divider">hoặc đăng nhập bằng email</div>
+
+      <!-- FORM -->
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="email@cua-ban.com" autocomplete="email">
+          <div class="form-error" id="loginEmailErr">Vui lòng nhập email hợp lệ.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mật khẩu</label>
+          <div class="password-wrap">
+            <input type="password" id="loginPassword" class="form-input" placeholder="Nhập mật khẩu" autocomplete="current-password" style="padding-right:44px;">
+            <button type="button" class="password-toggle" onclick="togglePw('loginPassword',this)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="form-error" id="loginPwErr">Mật khẩu phải có ít nhất 6 ký tự.</div>
+        </div>
+        <div class="form-remember">
+          <label class="form-checkbox-row">
+            <input type="checkbox" id="rememberMe"> Ghi nhớ đăng nhập
+          </label>
+          <span class="form-link" onclick="showPage('forgot')">Quên mật khẩu?</span>
+        </div>
+        <button type="submit" class="btn-auth" id="loginBtn">Đăng nhập</button>
+        <div class="form-error" id="loginGeneralErr" style="text-align:center;margin-top:10px;">Email hoặc mật khẩu không đúng.</div>
+      </form>
+
+      <div class="auth-footer">
+        Chưa có tài khoản? <a onclick="showPage('register')">Đăng ký ngay — miễn phí</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: REGISTER                 -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="register-page" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo" onclick="showPage('list')">TechPulse</div>
+      <h2 class="auth-title">Tạo tài khoản</h2>
+      <p class="auth-subtitle">Đăng ký miễn phí để lưu bài viết, nhận bản tin và tham gia bình luận.</p>
+
+      <form onsubmit="handleRegister(event)">
+        <div class="settings-row" style="margin-bottom:0;">
+          <div class="form-group">
+            <label class="form-label">Họ</label>
+            <input type="text" id="regLastName" class="form-input" placeholder="Nguyễn">
+            <div class="form-error" id="regLastNameErr">Vui lòng nhập họ.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tên</label>
+            <input type="text" id="regFirstName" class="form-input" placeholder="Văn A">
+            <div class="form-error" id="regFirstNameErr">Vui lòng nhập tên.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="email@cua-ban.com">
+          <div class="form-error" id="regEmailErr">Vui lòng nhập email hợp lệ.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mật khẩu</label>
+          <div class="password-wrap">
+            <input type="password" id="regPassword" class="form-input" placeholder="Tối thiểu 8 ký tự" oninput="checkPwStrength(this.value)" style="padding-right:44px;">
+            <button type="button" class="password-toggle" onclick="togglePw('regPassword',this)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="pw-strength">
+            <div class="pw-strength-bar"><div class="pw-strength-fill" id="pwStrengthFill"></div></div>
+            <div class="pw-strength-text" id="pwStrengthText">Nhập mật khẩu</div>
+          </div>
+          <div class="form-error" id="regPwErr">Mật khẩu phải có ít nhất 8 ký tự.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Xác nhận mật khẩu</label>
+          <div class="password-wrap">
+            <input type="password" id="regConfirm" class="form-input" placeholder="Nhập lại mật khẩu" style="padding-right:44px;">
+            <button type="button" class="password-toggle" onclick="togglePw('regConfirm',this)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="form-error" id="regConfirmErr">Mật khẩu không khớp.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox-row">
+            <input type="checkbox" id="agreeTerms">
+            Tôi đồng ý với <a href="javascript:void(0)" onclick="showPage('notfound')" style="color:var(--red);">Điều khoản dịch vụ</a> và <a href="javascript:void(0)" onclick="showPage('notfound')" style="color:var(--red);">Chính sách bảo mật</a>
+          </label>
+          <div class="form-error" id="regTermsErr">Bạn phải đồng ý với điều khoản.</div>
+        </div>
+        <button type="submit" class="btn-auth" id="registerBtn">Tạo tài khoản</button>
+      </form>
+
+      <div class="auth-divider">hoặc đăng ký bằng</div>
+      <div class="social-login">
+        <button class="btn-social google" onclick="socialRegister('Google')">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Google
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        Đã có tài khoản? <a onclick="showPage('login')">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: FORGOT PASSWORD          -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="forgot-page" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo" onclick="showPage('list')">TechPulse</div>
+      <h2 class="auth-title">Quên mật khẩu?</h2>
+      <p class="auth-subtitle">Nhập email đã đăng ký. Chúng tôi sẽ gửi link đặt lại mật khẩu về hộp thư của bạn.</p>
+
+      <form onsubmit="handleForgot(event)">
+        <div class="form-group">
+          <label class="form-label">Email đã đăng ký</label>
+          <input type="email" id="forgotEmail" class="form-input" placeholder="email@cua-ban.com">
+          <div class="form-error" id="forgotEmailErr">Vui lòng nhập email hợp lệ.</div>
+        </div>
+        <button type="submit" class="btn-auth" id="forgotBtn">Gửi link đặt lại mật khẩu</button>
+      </form>
+
+      <div style="background:var(--bg);border:1px solid var(--border);padding:14px 16px;margin-top:20px;font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start;border-radius:2px;">
+        <span style="flex-shrink:0;font-weight:700;color:var(--red);font-size:13px;">TIP</span>
+        <span>Kiểm tra cả thư mục spam nếu không thấy email trong vòng 5 phút. Link có hiệu lực trong 24 giờ.</span>
+      </div>
+
+      <div class="auth-footer">
+        <a onclick="showPage('login')">← Quay lại đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: PROFILE                  -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="profile-page" class="page" style="background:var(--bg);">
+  <div class="profile-layout">
+
+    <!-- PROFILE SIDEBAR NAV -->
+    <div class="profile-sidebar-nav">
+      <div class="profile-avatar-section">
+        <div class="profile-big-avatar" id="profileBigAvatar">T</div>
+        <div class="profile-name" id="profileSidebarName">Người dùng</div>
+        <div class="profile-email" id="profileSidebarEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0a7f796f784a6f676b636624696567">[email&#160;protected]</a></div>
+        <span class="profile-badge">Thành viên</span>
+      </div>
+      <div class="profile-menu">
+        <div class="profile-menu-item active" onclick="switchProfileTab('overview',this)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Tổng quan
+        </div>
+        <div class="profile-menu-item" onclick="switchProfileTab('bookmarks',this)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          Bài đã lưu
+        </div>
+        <div class="profile-menu-item" onclick="switchProfileTab('settings',this)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 1.89 3.04M4.93 4.93a10 10 0 0 0-1.89 3.04"/></svg>
+          Cài đặt tài khoản
+        </div>
+        <div class="profile-menu-item" onclick="switchProfileTab('password',this)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Đổi mật khẩu
+        </div>
+        <div class="profile-menu-item" onclick="switchProfileTab('notifications',this)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Thông báo
+        </div>
+        <div class="profile-menu-item danger" onclick="logout()" style="color:#ef4444;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Đăng xuất
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE MAIN CONTENT -->
+    <div class="profile-main">
+
+      <!-- TAB: OVERVIEW -->
+      <div class="profile-tab active" id="tab-overview">
+        <div class="profile-section-title">Tổng quan hoạt động</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num">47</div>
+            <div class="stat-label">Bài đã đọc</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Bài đã lưu</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">8</div>
+            <div class="stat-label">Bình luận</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border:1px solid var(--border);padding:20px;margin-bottom:20px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-bottom:14px;">Đọc gần đây</div>
+          <div class="bookmark-item" onclick="showPage('detail')">
+            <div class="bookmark-thumb"><img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&q=80" alt="" onerror="imgError(this)"></div>
+            <div>
+              <div class="bookmark-cat">Mobile</div>
+              <div class="bookmark-title">"Thành trì" cuối cùng ngăn người dùng iPhone chuyển sang Galaxy vừa bị phá vỡ</div>
+              <div class="bookmark-time">2 giờ trước</div>
+            </div>
+          </div>
+          <div class="bookmark-item" onclick="showPage('detail')">
+            <div class="bookmark-thumb"><img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=200&q=80" alt="" onerror="imgError(this)"></div>
+            <div>
+              <div class="bookmark-cat">AI</div>
+              <div class="bookmark-title">OpenAI đột ngột khai tử công cụ tạo video Sora sau chỉ 4 tháng</div>
+              <div class="bookmark-time">5 giờ trước</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--navy);padding:20px;color:#fff;">
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Ban tin hang ngay</div>
+          <div style="font-size:12px;color:#8aabb9;margin-bottom:12px;">Bạn chưa đăng ký nhận bản tin. Nhận tóm tắt tin tức lúc 8:00 sáng mỗi ngày.</div>
+          <button class="btn-save" onclick="showPage('newsletter')">Đăng ký ngay</button>
+        </div>
+      </div>
+
+      <!-- TAB: BOOKMARKS -->
+      <div class="profile-tab" id="tab-bookmarks">
+        <div class="profile-section-title">Bài đã lưu (12)</div>
+        <div id="bookmarksList">
+          <div class="bookmark-item" onclick="showPage('detail')">
+            <div class="bookmark-thumb"><img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&q=80" alt="" onerror="imgError(this)"></div>
+            <div style="flex:1;min-width:0;">
+              <div class="bookmark-cat">Mobile</div>
+              <div class="bookmark-title">"Thành trì" cuối cùng ngăn người dùng iPhone chuyển sang Galaxy vừa bị phá vỡ ở Việt Nam</div>
+              <div class="bookmark-time">Đã lưu: 25/03/2026</div>
+            </div>
+            <button class="bookmark-remove" onclick="event.stopPropagation();removeBookmark(this)" title="Bỏ lưu">&#x2715;</button>
+          </div>
+          <div class="bookmark-item" onclick="showPage('detail')">
+            <div class="bookmark-thumb"><img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=200&q=80" alt="" onerror="imgError(this)"></div>
+            <div style="flex:1;min-width:0;">
+              <div class="bookmark-cat">AI</div>
+              <div class="bookmark-title">OpenAI đột ngột khai tử công cụ tạo video Sora, Disney ngỡ ngàng khi thỏa thuận 1 tỷ USD bay màu</div>
+              <div class="bookmark-time">Đã lưu: 25/03/2026</div>
+            </div>
+            <button class="bookmark-remove" onclick="event.stopPropagation();removeBookmark(this)" title="Bỏ lưu">&#x2715;</button>
+          </div>
+          <div class="bookmark-item" onclick="showPage('detail')">
+            <div class="bookmark-thumb"><img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=200&q=80" alt="" onerror="imgError(this)"></div>
+            <div style="flex:1;min-width:0;">
+              <div class="bookmark-cat">Trà đá công nghệ</div>
+              <div class="bookmark-title">Từng có người đào được 184 tỷ Bitcoin trong một ngày và mất sạch chỉ sau vài giờ</div>
+              <div class="bookmark-time">Đã lưu: 23/03/2026</div>
+            </div>
+            <button class="bookmark-remove" onclick="event.stopPropagation();removeBookmark(this)" title="Bỏ lưu">&#x2715;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: SETTINGS -->
+      <div class="profile-tab" id="tab-settings">
+        <div class="profile-section-title">Cài đặt tài khoản</div>
+        <div class="settings-form">
+          <div class="settings-section">
+            <h4>Thông tin cá nhân</h4>
+            <div class="settings-row">
+              <div class="form-group">
+                <label class="form-label">Họ</label>
+                <input type="text" class="form-input" id="settingsLastName" value="">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tên</label>
+                <input type="text" class="form-input" id="settingsFirstName" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" id="settingsEmail" value="">
+              <div class="form-hint">Email dùng để đăng nhập và nhận thông báo.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bio (không bắt buộc)</label>
+              <textarea class="form-input" rows="3" placeholder="Vài dòng giới thiệu về bạn..." style="height:auto;padding-top:10px;resize:vertical;"></textarea>
+            </div>
+            <button class="btn-save" onclick="saveSettings()">Lưu thay đổi</button>
+          </div>
+          <div class="settings-section">
+            <h4>Tùy chọn nội dung</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <label class="form-checkbox-row"><input type="checkbox" checked style="accent-color:var(--red)"> Nhận email về bài viết theo chủ đề yêu thích</label>
+              <label class="form-checkbox-row"><input type="checkbox" checked style="accent-color:var(--red)"> Nhận thông báo bình luận mới trên bài tôi quan tâm</label>
+              <label class="form-checkbox-row"><input type="checkbox" style="accent-color:var(--red)"> Nhận email newsletter hàng tuần</label>
+              <label class="form-checkbox-row"><input type="checkbox" checked style="accent-color:var(--red)"> Hiện quảng cáo cá nhân hóa</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: PASSWORD -->
+      <div class="profile-tab" id="tab-password">
+        <div class="profile-section-title">Đổi mật khẩu</div>
+        <div class="settings-form" style="max-width:440px;">
+          <form onsubmit="handleChangePassword(event)">
+            <div class="form-group">
+              <label class="form-label">Mật khẩu hiện tại</label>
+              <div class="password-wrap">
+                <input type="password" id="currentPw" class="form-input" placeholder="Nhập mật khẩu hiện tại" style="padding-right:44px;">
+                <button type="button" class="password-toggle" onclick="togglePw('currentPw',this)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <div class="form-error" id="currentPwErr">Mật khẩu không đúng.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mật khẩu mới</label>
+              <div class="password-wrap">
+                <input type="password" id="newPw" class="form-input" placeholder="Tối thiểu 8 ký tự" style="padding-right:44px;" oninput="checkPwStrength(this.value)">
+                <button type="button" class="password-toggle" onclick="togglePw('newPw',this)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Xác nhận mật khẩu mới</label>
+              <div class="password-wrap">
+                <input type="password" id="confirmNewPw" class="form-input" placeholder="Nhập lại mật khẩu mới" style="padding-right:44px;">
+                <button type="button" class="password-toggle" onclick="togglePw('confirmNewPw',this)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <div class="form-error" id="confirmNewPwErr">Mật khẩu không khớp.</div>
+            </div>
+            <button type="submit" class="btn-auth" style="margin-top:4px;">Cập nhật mật khẩu</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB: NOTIFICATIONS -->
+      <div class="profile-tab" id="tab-notifications">
+        <div class="profile-section-title">Thông báo</div>
+        <div style="background:var(--white);border:1px solid var(--border);overflow:hidden;">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;cursor:pointer;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+            <div style="width:8px;height:8px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Samsung Galaxy S26 vừa nhận cập nhật Quick Share với iPhone</div>
+              <div style="font-size:12px;color:var(--gray);">2 giờ trước · Chuyên mục Mobile</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;cursor:pointer;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+            <div style="width:8px;height:8px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Bài viết mới trong chuyên mục AI bạn đang theo dõi</div>
+              <div style="font-size:12px;color:var(--gray);">5 giờ trước · OpenAI đóng cửa Sora</div>
+            </div>
+          </div>
+          <div style="padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;opacity:0.6;" onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+            <div style="width:8px;height:8px;background:var(--border);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Bản tin hàng ngày — Thứ Hai 24/03/2026</div>
+              <div style="font-size:12px;color:var(--gray);">Hôm qua · 8:00 sáng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: SEARCH — API #10 fully built           -->
+<!-- POST /api/search — Claude AI semantic search  -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="search-page" class="page" style="background:var(--bg);">
+  <div class="search-page-inner">
+
+    <!-- SEARCH BAR -->
+    <div class="search-bar-large">
+      <input type="text" id="searchInput"
+        placeholder="Tìm kiếm bài viết, chủ đề, sản phẩm, công nghệ..."
+        onkeydown="if(event.key==='Enter') triggerSearch()"
+        oninput="searchDebounce(this.value)">
+      <button onclick="triggerSearch()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="search-filters" id="searchFilters">
+      <button class="search-filter-btn active" onclick="setSearchFilter(this,'all')">Tất cả</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'mobile')">Mobile</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'ai')">AI</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'tin-ict')">Tin ICT</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'internet')">Internet</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'xe')">Xe</button>
+      <button class="search-filter-btn" onclick="setSearchFilter(this,'kham-pha')">Khám phá</button>
+    </div>
+
+    <!-- SUGGESTIONS (khi chưa gõ) -->
+    <div id="searchSuggestions">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Tìm kiếm phổ biến</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('Samsung Galaxy S26')">Samsung Galaxy S26</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('OpenAI Sora')">OpenAI Sora</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('iPhone 17 Pro')">iPhone 17 Pro</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('AI coding tool')">AI coding tool</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('điện thoại pin trâu')">Điện thoại pin trâu</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('MacBook M4')">MacBook M4</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('xe điện Việt Nam')">Xe điện Việt Nam</span>
+      </div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Bài đọc nhiều hôm nay</div>
+      <div id="searchPopularList">
+        <div class="search-result-item" onclick="showPage('detail')" style="padding:12px 0;">
+          <div class="search-result-thumb" style="width:100px;height:64px;"><img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&q=80" alt="" onerror="imgError(this)"></div>
+          <div><div class="search-result-cat">Mobile</div><div class="search-result-title" style="font-size:14px;">"Thành trì" cuối cùng ngăn iPhone chuyển sang Galaxy vừa bị phá vỡ</div><div class="search-result-meta">25/03/2026 · 4 phút đọc</div></div>
+        </div>
+        <div class="search-result-item" onclick="showPage('detail')" style="padding:12px 0;">
+          <div class="search-result-thumb" style="width:100px;height:64px;"><img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=200&q=80" alt="" onerror="imgError(this)"></div>
+          <div><div class="search-result-cat">AI</div><div class="search-result-title" style="font-size:14px;">OpenAI đóng cửa Sora sau 4 tháng, Disney mất 1 tỷ USD</div><div class="search-result-meta">25/03/2026 · 3 phút đọc</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING STATE -->
+    <div id="searchLoading" style="display:none;padding:48px 0;text-align:center;">
+      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+        <div style="font-size:14px;color:var(--gray);">Đang tìm kiếm với AI...</div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="searchResults" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+        <div class="search-meta" id="searchMeta"></div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-size:12px;color:var(--gray);">Sắp xếp:</span>
+          <select id="searchSort" onchange="sortResults(this.value)" style="border:1px solid var(--border);padding:4px 8px;font-size:12px;font-family:var(--sans);border-radius:2px;outline:none;">
+            <option value="relevance">Liên quan nhất</option>
+            <option value="date">Mới nhất</option>
+            <option value="views">Nhiều lượt xem</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- AI SUMMARY BOX -->
+      <div id="aiSummaryBox" style="display:none;background:var(--navy);color:#fff;padding:18px 20px;margin-bottom:20px;border-left:3px solid var(--accent,#e8ff47);">
+        <div style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#5a7a94;margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+          TechPulse AI · Tom tat tim kiem
+        </div>
+        <div id="aiSummaryText" style="font-size:14px;line-height:1.65;color:#c9d1d9;"></div>
+      </div>
+
+      <div id="searchResultsList"></div>
+
+      <!-- PAGINATION -->
+      <div id="searchPagination" style="display:flex;justify-content:center;align-items:center;gap:8px;padding:28px 0;">
+        <button class="search-filter-btn" onclick="searchPage(searchState.page-1)" id="prevBtn">← Trước</button>
+        <span id="pageIndicator" style="font-size:13px;color:var(--gray);padding:0 8px;"></span>
+        <button class="search-filter-btn" onclick="searchPage(searchState.page+1)" id="nextBtn">Tiếp →</button>
+      </div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div id="searchEmpty" style="display:none;text-align:center;padding:64px 0;">
+      <div style="margin-bottom:12px;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:8px;">Không tìm thấy kết quả</div>
+      <div style="font-size:14px;color:var(--gray);margin-bottom:20px;" id="searchEmptyMsg"></div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('công nghệ')">Công nghệ</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('smartphone')">Smartphone</span>
+        <span class="tag-pill" style="cursor:pointer;" onclick="quickSearch('AI')">AI</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: NEWSLETTER — API #17 fully built        -->
+<!-- POST /api/newsletter/subscribe                -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="newsletter-page" class="page" style="background:var(--bg);">
+  <div style="max-width:680px;margin:0 auto;padding:40px 24px 80px;">
+
+    <!-- HERO -->
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="margin-bottom:12px;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div style="font-family:var(--mono,monospace);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">TechPulse Newsletter</div>
+      <h1 style="font-family:var(--serif);font-size:36px;font-weight:700;margin-bottom:12px;line-height:1.2;">Tin công nghệ<br>thẳng vào hộp thư</h1>
+      <p style="font-size:16px;color:var(--gray);line-height:1.6;max-width:480px;margin:0 auto;">Tóm tắt 5 tin quan trọng nhất mỗi sáng. Không spam. Không clickbait. Chỉ thông tin thực sự đáng đọc.</p>
+    </div>
+
+    <!-- STATS ROW -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:32px;">
+      <div style="background:var(--white);padding:18px;text-align:center;">
+        <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--red);">24k+</div>
+        <div style="font-size:12px;color:var(--gray);">Người đăng ký</div>
+      </div>
+      <div style="background:var(--white);padding:18px;text-align:center;">
+        <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--red);">8:00</div>
+        <div style="font-size:12px;color:var(--gray);">Gửi mỗi sáng</div>
+      </div>
+      <div style="background:var(--white);padding:18px;text-align:center;">
+        <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--red);">68%</div>
+        <div style="font-size:12px;color:var(--gray);">Open rate</div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIBE FORM — full API flow -->
+    <div style="background:var(--white);border:1px solid var(--border);border-top:3px solid var(--red);padding:32px;" id="nlFormWrap">
+      <div style="font-size:14px;font-weight:700;margin-bottom:20px;">Đăng ký nhận bản tin</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="form-group" style="margin:0;">
+          <label class="form-label">Họ tên (không bắt buộc)</label>
+          <input type="text" id="nlName" class="form-input" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="form-group" style="margin:0;">
+          <label class="form-label">Email <span style="color:var(--red);">*</span></label>
+          <input type="email" id="nlEmail" class="form-input" placeholder="email@cua-ban.com" oninput="nlClearError()">
+          <div class="form-error" id="nlEmailErr" style="display:none;">Vui lòng nhập email hợp lệ.</div>
+          <div class="form-error" id="nlDupErr" style="display:none;">Email này đã đăng ký rồi!</div>
+        </div>
+      </div>
+
+      <!-- FREQUENCY PREFERENCE -->
+      <div class="form-group">
+        <label class="form-label">Tần suất nhận tin</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 16px;border:1.5px solid var(--border);border-radius:3px;font-size:13px;transition:all 0.15s;" id="nlFreqDaily" onclick="selectNlFreq('daily')">
+            <input type="radio" name="nlFreq" value="daily" checked style="accent-color:var(--red);"> Hang ngay
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 16px;border:1.5px solid var(--border);border-radius:3px;font-size:13px;transition:all 0.15s;" id="nlFreqWeekly" onclick="selectNlFreq('weekly')">
+            <input type="radio" name="nlFreq" value="weekly" style="accent-color:var(--red);"> Hang tuan
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 16px;border:1.5px solid var(--border);border-radius:3px;font-size:13px;transition:all 0.15s;" id="nlFreqBreaking" onclick="selectNlFreq('breaking')">
+            <input type="radio" name="nlFreq" value="breaking" style="accent-color:var(--red);"> Tin nong ngay
+          </label>
+        </div>
+      </div>
+
+      <!-- TOPIC PREFERENCES -->
+      <div class="form-group">
+        <label class="form-label">Chủ đề quan tâm</label>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;" id="nlTopics">
+          <label class="nl-topic-chip active" data-topic="mobile" onclick="toggleTopicChip(this)"><input type="checkbox" checked style="display:none;"> Mobile</label>
+          <label class="nl-topic-chip active" data-topic="ai" onclick="toggleTopicChip(this)"><input type="checkbox" checked style="display:none;"> AI</label>
+          <label class="nl-topic-chip" data-topic="ict" onclick="toggleTopicChip(this)"><input type="checkbox" style="display:none;"> Tin ICT</label>
+          <label class="nl-topic-chip" data-topic="internet" onclick="toggleTopicChip(this)"><input type="checkbox" style="display:none;"> Internet</label>
+          <label class="nl-topic-chip" data-topic="xe" onclick="toggleTopicChip(this)"><input type="checkbox" style="display:none;"> Xe</label>
+          <label class="nl-topic-chip" data-topic="kham-pha" onclick="toggleTopicChip(this)"><input type="checkbox" style="display:none;"> Kham pha</label>
+        </div>
+      </div>
+
+      <!-- RATE LIMIT HINT -->
+      <div style="background:var(--bg);border:1px solid var(--border);padding:12px 14px;font-size:12.5px;color:var(--gray);display:flex;gap:10px;align-items:flex-start;margin-bottom:18px;border-radius:2px;">
+        <span style="flex-shrink:0;font-size:13px;font-weight:700;color:var(--gray);">BM</span>
+        <span>Email của bạn được bảo mật tuyệt đối. Chúng tôi không bán hay chia sẻ dữ liệu với bên thứ ba. Bạn có thể hủy đăng ký bất cứ lúc nào bằng 1 click.</span>
+      </div>
+
+      <button class="btn-auth" id="nlSubmitBtn" onclick="handleNlSubmit()">
+        Đăng ký miễn phí — nhận ngay sáng mai
+      </button>
+      <div class="form-error" id="nlSubmitErr" style="text-align:center;margin-top:10px;display:none;">Đã xảy ra lỗi. Vui lòng thử lại.</div>
+    </div>
+
+    <!-- SUCCESS STATE (thay thế form) -->
+    <div id="nlSuccessWrap" style="display:none;background:var(--white);border:1px solid var(--border);border-top:3px solid #22c55e;padding:40px;text-align:center;">
+      <div style="margin-bottom:16px;"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div style="font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:8px;">Đăng ký thành công!</div>
+      <div style="font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.65;" id="nlSuccessMsg"></div>
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:14px 18px;border-radius:3px;font-size:13px;color:#166534;margin-bottom:20px;">
+        Email xac nhan da duoc gui. Kiem tra hop thu va nhan xac nhan de hoan tat dang ky.
+      </div>
+      <button class="btn-auth" onclick="showPage('list')" style="max-width:240px;margin:0 auto;">Về trang chủ</button>
+    </div>
+
+    <!-- SAMPLE PREVIEW -->
+    <div style="margin-top:40px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-bottom:16px;text-align:center;">Mẫu bản tin TechPulse Daily</div>
+      <div style="border:1px solid var(--border);background:var(--white);overflow:hidden;">
+        <div style="background:var(--navy);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-family:var(--serif);font-size:18px;color:#fff;font-weight:700;">TechPulse Daily</div>
+          <div style="font-size:11px;color:#5a7a94;">Thứ Sáu, 28/03/2026 · 8:00</div>
+        </div>
+        <div style="padding:24px;">
+          <div style="font-size:13px;color:var(--gray);margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:12px;">5 tin công nghệ quan trọng nhất hôm nay:</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--border);flex-shrink:0;line-height:1;width:24px;">1</span>
+              <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">Samsung Galaxy S26 hỗ trợ AirDrop với iPhone tại Việt Nam</div><div style="font-size:12px;color:var(--gray);">Mobile · 4 phút đọc</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--border);flex-shrink:0;line-height:1;width:24px;">2</span>
+              <div><div style="font-size:13px;font-weight:600;margin-bottom:2px;">OpenAI đóng cửa Sora — Disney mất hợp đồng 1 tỷ USD</div><div style="font-size:12px;color:var(--gray);">AI · 3 phút đọc</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;opacity:0.4;">
+              <span style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--border);flex-shrink:0;line-height:1;width:24px;">+3</span>
+              <div style="font-size:13px;color:var(--gray);font-style:italic;">3 tin nữa dành cho người đăng ký...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<!-- PAGE: 404                      -->
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="notfound-page" class="page">
+  <div class="notfound-page">
+    <div>
+      <div class="notfound-code">4<span>0</span>4</div>
+      <div class="notfound-title">Trang không tìm thấy</div>
+      <p class="notfound-text">Trang bạn đang tìm kiếm có thể đã bị xóa, đổi tên hoặc tạm thời không khả dụng.</p>
+      <button class="btn-home" onclick="showPage('list')">
+        ← Về trang chủ
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY (dùng chung) -->
+<div class="success-overlay" id="successOverlay" onclick="this.classList.remove('show')">
+  <div class="success-card" onclick="event.stopPropagation()">
+    <div class="success-icon" id="successIcon"></div>
+    <div class="success-title" id="successTitle">Thành công!</div>
+    <div class="success-text" id="successText">Thao tác đã được thực hiện.</div>
+    <button class="btn-auth" id="successBtn" onclick="document.getElementById('successOverlay').classList.remove('show')">OK</button>
+  </div>
+</div>
+
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-mark">TechPulse</div>
+      <div class="footer-tagline">Trang thông tin công nghệ hàng đầu dành cho người Việt yêu công nghệ.</div>
+      <div class="footer-social">
+        <div class="social-btn" title="Facebook">f</div>
+        <div class="social-btn" title="YouTube">▶</div>
+        <div class="social-btn" title="TikTok">TK</div>
+        <div class="social-btn" title="Zalo">Z</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Chuyên mục</h5>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">Mobile</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">AI</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">Tin ICT</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">Internet</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">Khám phá</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('list')">Xe</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Về chúng tôi</h5>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Giới thiệu</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Tòa soạn</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Quảng cáo</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Tuyển dụng</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Liên hệ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Hỗ trợ</h5>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Chính sách bảo mật</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Điều khoản sử dụng</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">Sitemap</a></li>
+        <li><a href="javascript:void(0)" onclick="showPage('notfound')">RSS Feed</a></li>
+      </ul>
+      <div style="margin-top:14px;padding:12px;background:#1e3040;border-radius:2px;">
+        <div style="font-size:10px;color:#3a5a70;letter-spacing:0.1em;margin-bottom:4px;">LIÊN HỆ QUẢNG CÁO</div>
+        <a href="javascript:void(0)" onclick="showPage('list')" style="color:#5a7a94;font-size:13px;display:flex;align-items:center;gap:6px;">
+          Chat voi tu van vien
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 TechPulse — Thuộc Công ty Cổ phần MediaGroup. Giấy phép TTĐT số 123/GP-TTĐT</p>
+    <div class="footer-legal">
+      <a href="javascript:void(0)" onclick="showPage('notfound')">Chính sách bảo mật</a>
+      <a href="javascript:void(0)" onclick="showPage('notfound')">Điều khoản</a>
+      <a href="javascript:void(0)" onclick="showPage('notfound')">Cookie</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+'use strict';
+
+// ══════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════
+const API_BASE = (window.TECHPULSE_API || '').replace(/\/$/, '') || 'http://localhost:3000';
+
+// ══════════════════════════════════════════════
+// API HELPER
+// ══════════════════════════════════════════════
+async function api(method, path, body) {
+  const token = localStorage.getItem('tp_token');
+  const opts = {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: 'Bearer ' + token } : {}),
+    },
+  };
+  if (body !== undefined) opts.body = JSON.stringify(body);
+  const res = await fetch(API_BASE + path, opts);
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error || `HTTP ${res.status}`);
+  return json.data;
+}
+
+// ══════════════════════════════════════════════
+// FORMAT HELPERS
+// ══════════════════════════════════════════════
+function fmtDate(iso) {
+  try {
+    const d = new Date(iso);
+    return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+  } catch { return iso || ''; }
+}
+function fmtNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
+  if (n >= 1000)    return (n/1000).toFixed(1)+'K';
+  return String(n||0);
+}
+function htmlEsc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Chuyển article từ API → format dùng trong render
+function mapArticle(a) {
+  return {
+    id:       a.id,
+    slug:     a.slug,
+    cat:      a.categoryLabel || a.category || '',
+    filter:   a.category || '',
+    title:    a.title || '',
+    excerpt:  a.excerpt || a.summary || '',
+    date:     fmtDate(a.date),
+    time:     String(a.readTime || 4),
+    img:      a.thumbnail || 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80',
+    views:    a.views || 0,
+    shares:   a.shares || 0,
+    tags:     a.tags || [],
+    isHot:    a.isHot,
+    isFeatured: a.isFeatured,
+    commentCount: a.commentCount || 0,
+    content:  a.content || '',
+  };
+}
+
+// ══════════════════════════════════════════════
+// AUTH STATE
+// ══════════════════════════════════════════════
+const auth = {
+  loggedIn: false,
+  user: null,
+  token: null,
+
+  async init() {
+    const saved = localStorage.getItem('tp_token');
+    if (!saved) return;
+    try {
+      const user = await api('GET', '/api/auth/me');
+      this.token   = saved;
+      this.loggedIn = true;
+      this.user    = user;
+      this.updateUI();
+      await loadBookmarkIds();
+    } catch {
+      localStorage.removeItem('tp_token');
+      localStorage.removeItem('tp_user');
+    }
+  },
+
+  async login(email, password) {
+    const data = await api('POST', '/api/auth/login', { email, password });
+    this.token   = data.token;
+    this.loggedIn = true;
+    this.user    = data.user;
+    localStorage.setItem('tp_token', data.token);
+    localStorage.setItem('tp_user',  JSON.stringify(data.user));
+    this.updateUI();
+    await loadBookmarkIds();
+    return data.user;
+  },
+
+  async register(name, email, password) {
+    const data = await api('POST', '/api/auth/register', { name, email, password });
+    this.token   = data.token;
+    this.loggedIn = true;
+    this.user    = data.user;
+    localStorage.setItem('tp_token', data.token);
+    localStorage.setItem('tp_user',  JSON.stringify(data.user));
+    this.updateUI();
+    return data.user;
+  },
+
+  logout() {
+    this.loggedIn = false;
+    this.user     = null;
+    this.token    = null;
+    localStorage.removeItem('tp_token');
+    localStorage.removeItem('tp_user');
+    _bookmarkIds.clear();
+    this.updateUI();
+    showPage('list');
+    showToast('Đã đăng xuất thành công.');
+  },
+
+  updateUI() {
+    const guest = document.getElementById('guestButtons');
+    const menu  = document.getElementById('userMenu');
+    if (!guest || !menu) return;
+    if (this.loggedIn && this.user) {
+      guest.style.display = 'none';
+      menu.style.display  = 'flex';
+      const name = this.user.name || '';
+      const parts = name.split(' ');
+      const firstName = parts[parts.length-1] || name;
+      const initials  = parts.map(w=>w[0]||'').slice(0,2).join('').toUpperCase() || 'U';
+      const avatar    = this.user.avatar || null;
+
+      const setAva = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (avatar) { el.style.backgroundImage=`url(${avatar})`; el.style.backgroundSize='cover'; el.textContent=''; }
+        else el.textContent = initials;
+      };
+      setAva('userAvatarCircle');
+      setAva('userDropdownAvatar');
+      setAva('profileBigAvatar');
+
+      const s = (id, v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+      s('userDisplayName',       firstName);
+      s('userDropdownName',      name);
+      s('userDropdownEmail',     this.user.email || '');
+      s('profileSidebarName',    name);
+      s('profileSidebarEmail',   this.user.email || '');
+
+      // Pre-fill settings
+      const nameParts = name.split(' ');
+      const fn = document.getElementById('settingsFirstName');
+      const ln = document.getElementById('settingsLastName');
+      const em = document.getElementById('settingsEmail');
+      if (fn) fn.value = nameParts[nameParts.length-1] || '';
+      if (ln) ln.value = nameParts.slice(0,-1).join(' ') || '';
+      if (em) em.value = this.user.email || '';
+    } else {
+      guest.style.display = 'flex';
+      menu.style.display  = 'none';
+    }
+  }
+};
+
+// ══════════════════════════════════════════════
+// ARTICLES STATE
+// ══════════════════════════════════════════════
+let _articles = [];       // danh sách trang chủ
+let _articlesPage = 1;
+let _articlesTotal = 0;
+let _currentArticle = null; // bài đang xem
+
+// Bookmarks
+const _bookmarkIds = new Set();
+async function loadBookmarkIds() {
+  if (!auth.loggedIn) return;
+  try {
+    const items = await api('GET', '/api/user/bookmarks');
+    _bookmarkIds.clear();
+    (items || []).forEach(a => _bookmarkIds.add(a.id));
+  } catch {}
+}
+
+// ══════════════════════════════════════════════
+// PAGE ROUTING
+// ══════════════════════════════════════════════
+const PAGE_META = {
+  list:       { title: 'Tin Hot — TechPulse',       breadcrumb: [] },
+  detail:     { title: 'Bài viết — TechPulse',      breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Bài viết' }] },
+  login:      { title: 'Đăng nhập — TechPulse',     breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Đăng nhập' }] },
+  register:   { title: 'Đăng ký — TechPulse',       breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Đăng ký' }] },
+  forgot:     { title: 'Quên mật khẩu — TechPulse', breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Đăng nhập', page:'login' }, { label:'Quên mật khẩu' }] },
+  profile:    { title: 'Tài khoản — TechPulse',     breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Tài khoản' }] },
+  search:     { title: 'Tìm kiếm — TechPulse',      breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Tìm kiếm' }] },
+  newsletter: { title: 'Bản tin — TechPulse',       breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'Bản tin' }] },
+  notfound:   { title: '404 — TechPulse',            breadcrumb: [{ label:'Trang chủ', page:'list' }, { label:'404' }] },
+};
+
+let _historyStack = ['list'];
+
+function showPage(name, pushHistory = true) {
+  if (name === 'profile' && !auth.loggedIn) { showPage('login'); return; }
+  const target = document.getElementById(name + '-page');
+  if (!target) { showPage('notfound'); return; }
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  target.classList.add('active');
+
+  if (pushHistory) {
+    try { history.pushState({ page: name }, '', '#' + name); } catch {}
+    _historyStack.push(name);
+  }
+
+  const meta = PAGE_META[name] || PAGE_META.list;
+  document.title = meta.title;
+
+  const backBar = document.getElementById('backBar');
+  const isHome  = name === 'list';
+  backBar?.classList.toggle('visible', !isHome);
+
+  if (!isHome) {
+    const bc = document.getElementById('backBreadcrumb');
+    if (bc) {
+      bc.innerHTML = (meta.breadcrumb || []).map((c, i, arr) => {
+        const isLast = i === arr.length - 1;
+        if (isLast) return `<span style="color:var(--text2);font-weight:600;">${htmlEsc(c.label)}</span>`;
+        return `<a onclick="showPage('${c.page}')">${htmlEsc(c.label)}</a><span>›</span>`;
+      }).join('');
+    }
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('userDropdown')?.classList.remove('open');
+  updateProgress();
+  updateNavActive(name);
+
+  // Load data khi vào page
+  if (name === 'list' && _articles.length === 0) loadHomepage();
+  if (name === 'profile' && auth.loggedIn) loadProfileData();
+}
+
+function goBack() {
+  if (_historyStack.length > 1) {
+    _historyStack.pop();
+    const prev = _historyStack[_historyStack.length - 1];
+    window._goingBack = true;
+    try { history.back(); } catch { showPage(prev, false); }
+  } else {
+    showPage('list');
+  }
+}
+
+window.addEventListener('popstate', (e) => {
+  const page = e.state?.page || 'list';
+  if (window._goingBack) { window._goingBack = false; showPage(page, false); return; }
+  const idx = _historyStack.lastIndexOf(page);
+  _historyStack = idx !== -1 ? _historyStack.slice(0, idx + 1) : [page];
+  showPage(page, false);
+});
+
+(function initRoute() {
+  const hash = (() => { try { return location.hash.replace('#',''); } catch { return ''; } })();
+  const page = PAGE_META[hash] ? hash : 'list';
+  try { history.replaceState({ page }, '', '#' + page); } catch {}
+  showPage(page, false);
+})();
+
+// ══════════════════════════════════════════════
+// LOAD HOMEPAGE — articles + trending + hot ticker
+// ══════════════════════════════════════════════
+async function loadHomepage() {
+  try {
+    // Load articles trang chủ
+    const data = await api('GET', '/api/articles?page=1&limit=10');
+    _articles      = (data.items || []).map(mapArticle);
+    _articlesPage  = data.page || 1;
+    _articlesTotal = data.total || 0;
+    renderArticleList(_articles);
+
+    // Load trending sidebar
+    const trending = await api('GET', '/api/articles/trending?limit=5');
+    renderTrending(trending.map(mapArticle));
+
+    // Load hot ticker
+    const hot = await api('GET', '/api/articles?hot=true&limit=5');
+    renderTicker((hot.items || []).map(mapArticle));
+
+  } catch(e) {
+    console.warn('[news-ui] loadHomepage failed:', e.message);
+    // Giữ nguyên HTML hardcode như fallback
+  }
+}
+
+function renderArticleList(articles) {
+  const main = document.querySelector('#list-page main');
+  if (!main || !articles.length) return;
+
+  // Render featured (bài đầu tiên)
+  const featured = articles.find(a => a.isFeatured) || articles[0];
+  const rest     = articles.filter(a => a !== featured);
+
+  const featEl = main.querySelector('.featured-card');
+  if (featEl && featured) {
+    featEl.onclick = () => openArticle(featured);
+    const img = featEl.querySelector('img');
+    if (img) { img.src = featured.img; img.alt = featured.title; }
+    const cat = featEl.querySelector('.feat-cat');
+    if (cat) cat.textContent = featured.cat;
+    const title = featEl.querySelector('.feat-title');
+    if (title) title.textContent = featured.title;
+    const excerpt = featEl.querySelector('.feat-excerpt');
+    if (excerpt) excerpt.textContent = featured.excerpt;
+    const meta = featEl.querySelector('.feat-meta');
+    if (meta) meta.textContent = `${featured.date} · ${featured.time} phút đọc`;
+  }
+
+  // Render card list
+  const cards = main.querySelectorAll('.article-card');
+  rest.slice(0, cards.length).forEach((a, i) => {
+    if (!cards[i]) return;
+    cards[i].onclick = () => openArticle(a);
+    const img = cards[i].querySelector('img');
+    if (img) { img.src = a.img; img.alt = a.title; }
+    const catEl = cards[i].querySelector('.card-cat');
+    if (catEl) catEl.textContent = a.cat;
+    const titleEl = cards[i].querySelector('.card-title');
+    if (titleEl) titleEl.textContent = a.title;
+    const excerptEl = cards[i].querySelector('.card-excerpt');
+    if (excerptEl) excerptEl.textContent = a.excerpt;
+    const metaEl = cards[i].querySelector('.card-meta');
+    if (metaEl) metaEl.innerHTML = `<span>${htmlEsc(a.cat)} ·</span><span>${htmlEsc(a.date)} · ${htmlEsc(a.time)} phút đọc</span>`;
+  });
+}
+
+function renderTrending(articles) {
+  const container = document.querySelector('.widget .trending-list, .sidebar .trending-list');
+  if (!container) {
+    // Try by structure — trending items
+    const items = document.querySelectorAll('.trending-item');
+    articles.slice(0, items.length).forEach((a, i) => {
+      if (!items[i]) return;
+      items[i].onclick = () => openArticle(a);
+      const title = items[i].querySelector('.trending-text');
+      if (title) title.textContent = a.title;
+    });
+    return;
+  }
+  container.innerHTML = articles.map((a, i) => `
+    <div class="trending-item" onclick="openArticle(${JSON.stringify(a).replace(/"/g,'&quot;')})">
+      <div class="trending-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="trending-text">${htmlEsc(a.title)}</div>
+    </div>`).join('');
+}
+
+function renderTicker(articles) {
+  const inner = document.querySelector('.ticker-inner');
+  if (!inner || !articles.length) return;
+  // Lặp 2 lần để seamless scroll
+  const html = articles.map(a => `<span>${htmlEsc(a.title)}</span>`).join('');
+  inner.innerHTML = html + html;
+}
+
+// ══════════════════════════════════════════════
+// OPEN ARTICLE — fetch full content + comments
+// ══════════════════════════════════════════════
+async function openArticle(articleOrId) {
+  let article;
+  if (typeof articleOrId === 'object') {
+    article = articleOrId;
+  } else {
+    try {
+      const data = await api('GET', `/api/articles/${articleOrId}`);
+      article = mapArticle(data);
+    } catch(e) {
+      showToast('Không thể tải bài viết.');
+      return;
+    }
+  }
+
+  _currentArticle = article;
+  showPage('detail');
+
+  // Update detail page breadcrumb với category
+  const bc = document.getElementById('backBreadcrumb');
+  if (bc) {
+    bc.innerHTML = `<a onclick="showPage('list')">Trang chủ</a><span>›</span><a onclick="filterByCategory('${htmlEsc(article.filter)}','${htmlEsc(article.cat)}')">${htmlEsc(article.cat)}</a><span>›</span><span style="color:var(--text2);font-weight:600;">Bài viết</span>`;
+  }
+
+  // Fill detail page
+  const detailPage = document.getElementById('detail-page');
+  if (!detailPage) return;
+
+  const img = detailPage.querySelector('.detail-hero img, .article-hero img');
+  if (img) { img.src = article.img; img.alt = article.title; }
+
+  const catEl = detailPage.querySelector('.article-cat, .detail-cat');
+  if (catEl) catEl.textContent = article.cat;
+
+  const titleEl = detailPage.querySelector('.article-title, .detail-title, h1');
+  if (titleEl) titleEl.textContent = article.title;
+
+  const metaEl = detailPage.querySelector('.article-meta, .byline');
+  if (metaEl) metaEl.innerHTML = `<span>${htmlEsc(article.date)}</span> · <span>${htmlEsc(article.time)} phút đọc</span> · <span>${fmtNum(article.views)} lượt xem</span>`;
+
+  const bodyEl = detailPage.querySelector('.article-body, .article-content, .detail-body');
+  if (bodyEl) {
+    if (article.content) {
+      bodyEl.innerHTML = article.content;
+    } else {
+      // Fetch full content nếu chưa có
+      try {
+        const full = await api('GET', `/api/articles/${article.id || article.slug}`);
+        bodyEl.innerHTML = full.content || '<p>' + htmlEsc(article.excerpt) + '</p>';
+        _currentArticle.content = full.content;
+      } catch { bodyEl.innerHTML = '<p>' + htmlEsc(article.excerpt) + '</p>'; }
+    }
+  }
+
+  // Tags
+  const tagsEl = detailPage.querySelector('.article-tags, .tags-row');
+  if (tagsEl && article.tags && article.tags.length) {
+    tagsEl.innerHTML = article.tags.map(t =>
+      `<span class="tag-pill" onclick="searchByTag('${htmlEsc(t)}')">${htmlEsc(t)}</span>`
+    ).join('');
+  }
+
+  // Bookmark button state
+  updateBookmarkBtn(article.id);
+
+  // Load comments + related
+  loadComments(article.id);
+  loadRelated(article.id, article.filter);
+}
+
+// ══════════════════════════════════════════════
+// COMMENTS
+// ══════════════════════════════════════════════
+async function loadComments(articleId) {
+  const container = document.getElementById('commentsContainer') ||
+                    document.querySelector('.comments-section .comments-list');
+  if (!container) return;
+
+  try {
+    const data = await api('GET', `/api/articles/${articleId}/comments?limit=20`);
+    const items = data.items || data || [];
+    if (!items.length) {
+      container.innerHTML = '<div style="padding:16px;text-align:center;color:var(--gray);font-size:13px;">Chưa có bình luận. Hãy là người đầu tiên!</div>';
+      return;
+    }
+    container.innerHTML = items.map(c => `
+      <div class="comment-item" style="padding:12px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">${htmlEsc((c.user_name||'?')[0].toUpperCase())}</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;">${htmlEsc(c.user_name||'Ẩn danh')}</div>
+            <div style="font-size:11px;color:var(--gray);">${fmtDate(c.created_at)}</div>
+          </div>
+        </div>
+        <div style="font-size:13px;line-height:1.6;padding-left:38px;">${htmlEsc(c.content)}</div>
+      </div>`).join('');
+  } catch { container.innerHTML = ''; }
+}
+
+async function submitComment(e) {
+  e.preventDefault();
+  if (!auth.loggedIn) { showPage('login'); return; }
+  if (!_currentArticle) return;
+
+  const input = document.getElementById('commentInput') ||
+                document.querySelector('.comment-form textarea, .comment-form input');
+  if (!input) return;
+  const content = input.value.trim();
+  if (!content) return;
+
+  const btn = e.target.querySelector('button[type=submit], .btn-comment');
+  if (btn) { btn.disabled = true; btn.textContent = 'Đang gửi...'; }
+
+  try {
+    await api('POST', `/api/articles/${_currentArticle.id}/comments`, { content });
+    input.value = '';
+    showToast('Đã gửi bình luận!');
+    loadComments(_currentArticle.id);
+  } catch(err) {
+    showToast(err.message, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Gửi'; }
+  }
+}
+
+// ══════════════════════════════════════════════
+// RELATED ARTICLES
+// ══════════════════════════════════════════════
+async function loadRelated(articleId) {
+  const container = document.querySelector('.related-articles .related-list, .related-top-list');
+  if (!container) return;
+  try {
+    const items = await api('GET', `/api/articles/${articleId}/related`);
+    if (!items || !items.length) { container.closest('.related-articles, .related-top')?.remove(); return; }
+    container.innerHTML = items.map(a => {
+      const mapped = mapArticle(a);
+      return `<li onclick="openArticle(${mapped.id})" style="cursor:pointer;padding:8px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:13px;font-weight:600;line-height:1.4;">${htmlEsc(mapped.title)}</div>
+        <div style="font-size:11px;color:var(--gray);margin-top:3px;">${htmlEsc(mapped.cat)} · ${htmlEsc(mapped.date)}</div>
+      </li>`;
+    }).join('');
+  } catch {}
+}
+
+// ══════════════════════════════════════════════
+// BOOKMARKS
+// ══════════════════════════════════════════════
+function updateBookmarkBtn(articleId) {
+  const btn = document.getElementById('bookmarkBtn') ||
+              document.querySelector('.btn-bookmark, [data-action="bookmark"]');
+  if (!btn) return;
+  const saved = _bookmarkIds.has(articleId);
+  btn.classList.toggle('saved', saved);
+  const icon = btn.querySelector('svg, .icon');
+  if (!icon) btn.textContent = saved ? '🔖 Đã lưu' : '🔖 Lưu bài';
+}
+
+async function toggleBookmark() {
+  if (!auth.loggedIn) { showPage('login'); return; }
+  if (!_currentArticle) return;
+  try {
+    const res = await api('POST', `/api/user/bookmarks/${_currentArticle.id}`);
+    if (res.saved) _bookmarkIds.add(_currentArticle.id);
+    else           _bookmarkIds.delete(_currentArticle.id);
+    updateBookmarkBtn(_currentArticle.id);
+    showToast(res.saved ? 'Đã lưu bài viết!' : 'Đã bỏ lưu bài viết.');
+    // Refresh bookmark list nếu đang ở profile
+    if (document.getElementById('tab-bookmarks')?.classList.contains('active')) {
+      loadBookmarkList();
+    }
+  } catch(e) { showToast(e.message); }
+}
+
+async function loadBookmarkList() {
+  const container = document.getElementById('bookmarksList');
+  if (!container) return;
+  if (!auth.loggedIn) { container.innerHTML = '<p style="color:var(--gray);font-size:13px;padding:16px 0;">Đăng nhập để xem bài đã lưu.</p>'; return; }
+  try {
+    const items = await api('GET', '/api/user/bookmarks');
+    if (!items || !items.length) {
+      container.innerHTML = '<p style="color:var(--gray);font-size:13px;padding:16px 0;">Bạn chưa lưu bài viết nào.</p>'; return;
+    }
+    container.innerHTML = items.map(a => {
+      const mapped = mapArticle(a);
+      return `<div class="bookmark-item" style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;">
+        <img src="${htmlEsc(mapped.img)}" style="width:80px;height:54px;object-fit:cover;border-radius:8px;flex-shrink:0;" onerror="imgError(this)">
+        <div style="flex:1;min-width:0;">
+          <div class="bookmark-cat" style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:3px;">${htmlEsc(mapped.cat)}</div>
+          <div style="font-size:13px;font-weight:600;line-height:1.4;cursor:pointer;" onclick="openArticle(${mapped.id})">${htmlEsc(mapped.title)}</div>
+          <div class="bookmark-time" style="font-size:11px;color:var(--gray);margin-top:4px;">${htmlEsc(mapped.date)}</div>
+        </div>
+        <button onclick="removeBookmark(this,${mapped.id})" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:18px;flex-shrink:0;padding:0 4px;">×</button>
+      </div>`;
+    }).join('');
+  } catch(e) { container.innerHTML = '<p style="color:var(--gray);font-size:13px;">Không thể tải danh sách.</p>'; }
+}
+
+async function removeBookmark(btn, articleId) {
+  try {
+    await api('POST', `/api/user/bookmarks/${articleId}`);
+    _bookmarkIds.delete(articleId);
+    btn.closest('.bookmark-item')?.remove();
+    showToast('Đã bỏ lưu bài viết.');
+  } catch(e) { showToast(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// PROFILE DATA
+// ══════════════════════════════════════════════
+async function loadProfileData() {
+  await loadBookmarkList();
+  loadNotificationSettings();
+}
+
+async function loadNotificationSettings() {
+  try {
+    const s = await api('GET', '/api/user/notifications');
+    const map = {
+      email_on:  'notifEmail',
+      breaking:  'notifBreaking',
+      weekly:    'notifWeekly',
+      marketing: 'notifMarketing',
+    };
+    Object.entries(s).forEach(([k, v]) => {
+      const el = document.getElementById(map[k] || k);
+      if (el && el.type === 'checkbox') el.checked = !!v;
+    });
+  } catch {}
+}
+
+async function saveNotificationSettings() {
+  try {
+    const email     = document.getElementById('notifEmail')?.checked;
+    const breaking  = document.getElementById('notifBreaking')?.checked;
+    const weekly    = document.getElementById('notifWeekly')?.checked;
+    const marketing = document.getElementById('notifMarketing')?.checked;
+    await api('PUT', '/api/user/notifications', { email, breaking, weekly, marketing });
+    showToast('Đã lưu cài đặt thông báo!');
+  } catch(e) { showToast(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// LOGIN / REGISTER / FORGOT HANDLERS
+// ══════════════════════════════════════════════
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pw    = document.getElementById('loginPassword').value;
+  let valid   = true;
+  clearErrors('loginEmail','loginEmailErr','loginPwErr','loginGeneralErr');
+  if (!email || !email.includes('@')) { showErr('loginEmail','loginEmailErr'); valid=false; }
+  if (!pw || pw.length < 8)           { showErr('loginPassword','loginPwErr'); valid=false; }
+  if (!valid) return;
+
+  const btn = document.getElementById('loginBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+  try {
+    const user = await auth.login(email, pw);
+    document.getElementById('loginEmail').value = '';
+    document.getElementById('loginPassword').value = '';
+    const firstName = user.name.split(' ').pop();
+    showSuccess('', 'Đăng nhập thành công!', `Chào mừng trở lại, ${firstName}!`, () => showPage('list'));
+  } catch(err) {
+    showErr(null, 'loginGeneralErr');
+    const errEl = document.getElementById('loginGeneralErr');
+    if (errEl) errEl.textContent = err.message || 'Email hoặc mật khẩu không đúng.';
+  } finally {
+    btn.classList.remove('loading'); btn.disabled = false;
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const ln    = document.getElementById('regLastName').value.trim();
+  const fn    = document.getElementById('regFirstName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pw    = document.getElementById('regPassword').value;
+  const conf  = document.getElementById('regConfirm').value;
+  const terms = document.getElementById('agreeTerms').checked;
+  let valid   = true;
+  clearErrors('regLastName','regLastNameErr','regFirstName','regFirstNameErr','regEmail','regEmailErr','regPassword','regPwErr','regConfirm','regConfirmErr','regTermsErr');
+  if (!ln) { showErr('regLastName','regLastNameErr'); valid=false; }
+  if (!fn) { showErr('regFirstName','regFirstNameErr'); valid=false; }
+  if (!email || !email.includes('@')) { showErr('regEmail','regEmailErr'); valid=false; }
+  if (!pw || pw.length < 8)  { showErr('regPassword','regPwErr'); valid=false; }
+  if (pw !== conf)           { showErr('regConfirm','regConfirmErr'); valid=false; }
+  if (!terms) { document.getElementById('regTermsErr').classList.add('show'); valid=false; }
+  if (!valid) return;
+
+  const btn = document.getElementById('registerBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+  try {
+    const name = `${ln} ${fn}`.trim();
+    await auth.register(name, email, pw);
+    showSuccess('', 'Tạo tài khoản thành công!', `Chào mừng ${fn} đến với TechPulse!`, () => showPage('list'));
+  } catch(err) {
+    showErr('regEmail','regEmailErr');
+    const errEl = document.getElementById('regEmailErr');
+    if (errEl) errEl.textContent = err.message || 'Đăng ký thất bại.';
+    errEl?.classList.add('show');
+  } finally {
+    btn.classList.remove('loading'); btn.disabled = false;
+  }
+}
+
+async function handleForgot(e) {
+  e.preventDefault();
+  const email = document.getElementById('forgotEmail').value.trim();
+  clearErrors('forgotEmail','forgotEmailErr');
+  if (!email || !email.includes('@')) { showErr('forgotEmail','forgotEmailErr'); return; }
+  const btn = document.getElementById('forgotBtn');
+  btn.classList.add('loading'); btn.disabled = true;
+  try {
+    await api('POST', '/api/auth/forgot-password', { email });
+    showSuccess('', 'Email đã được gửi!', `Link đặt lại đã gửi đến ${email}. Kiểm tra hộp thư.`, () => showPage('login'));
+  } catch(err) {
+    showToast(err.message);
+  } finally {
+    btn.classList.remove('loading'); btn.disabled = false;
+  }
+}
+
+async function handleChangePassword(e) {
+  e.preventDefault();
+  const cur  = document.getElementById('currentPw').value;
+  const nw   = document.getElementById('newPw').value;
+  const conf = document.getElementById('confirmNewPw').value;
+  clearErrors('currentPw','currentPwErr','confirmNewPw','confirmNewPwErr');
+  let valid = true;
+  if (!cur || cur.length < 8) { showErr('currentPw','currentPwErr'); valid=false; }
+  if (!nw || nw.length < 8)   { showErr('newPw','currentPwErr'); valid=false; }
+  if (nw !== conf)             { showErr('confirmNewPw','confirmNewPwErr'); valid=false; }
+  if (!valid) return;
+  try {
+    await api('PUT', '/api/auth/me/password', { currentPassword: cur, newPassword: nw });
+    showToast('Đã cập nhật mật khẩu thành công!');
+    document.getElementById('currentPw').value   = '';
+    document.getElementById('newPw').value       = '';
+    document.getElementById('confirmNewPw').value = '';
+  } catch(err) { showToast(err.message); }
+}
+
+function logout() { auth.logout(); }
+
+// ━━━ SOCIAL LOGIN — placeholder (cần OAuth thật) ━━━
+function socialLogin(provider) {
+  showToast(`${provider} login chưa được cấu hình.`);
+}
+function socialRegister(provider) {
+  const termsEl = document.getElementById('agreeTerms');
+  if (!termsEl?.checked) {
+    const err = document.getElementById('regTermsErr');
+    if (err) { err.classList.add('show'); err.textContent = `Đồng ý điều khoản trước khi đăng ký bằng ${provider}.`; }
+    return;
+  }
+  showToast(`${provider} login chưa được cấu hình.`);
+}
+
+// ══════════════════════════════════════════════
+// SETTINGS SAVE — gọi API
+// ══════════════════════════════════════════════
+async function saveSettings() {
+  if (!auth.loggedIn) return;
+  const fn = document.getElementById('settingsFirstName')?.value.trim() || '';
+  const ln = document.getElementById('settingsLastName')?.value.trim() || '';
+  const name = `${ln} ${fn}`.trim();
+  try {
+    const updated = await api('PUT', '/api/auth/me', { name });
+    auth.user = updated;
+    localStorage.setItem('tp_user', JSON.stringify(updated));
+    auth.updateUI();
+    showToast('Đã lưu thay đổi thành công!');
+  } catch(e) { showToast(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// LOAD MORE — pagination từ API
+// ══════════════════════════════════════════════
+async function loadMoreArticles(btn) {
+  btn.textContent = 'Đang tải...'; btn.disabled = true;
+  try {
+    const nextPage = _articlesPage + 1;
+    const data = await api('GET', `/api/articles?page=${nextPage}&limit=6`);
+    const newArticles = (data.items || []).map(mapArticle);
+    _articlesPage = data.page;
+    _articlesTotal = data.total;
+
+    const main = document.querySelector('#list-page main');
+    const insertBefore = btn.closest('div');
+    newArticles.forEach(a => {
+      const card = document.createElement('div');
+      card.className = 'article-card';
+      card.onclick = () => openArticle(a);
+      card.innerHTML = `
+        <div class="card-thumb"><img src="${htmlEsc(a.img)}" alt="${htmlEsc(a.title)}" loading="lazy" onerror="imgError(this)"></div>
+        <div class="card-body">
+          <div class="card-cat">${htmlEsc(a.cat)}</div>
+          <div class="card-title">${htmlEsc(a.title)}</div>
+          <div class="card-excerpt">${htmlEsc(a.excerpt)}</div>
+          <div class="card-meta"><span>${htmlEsc(a.cat)} ·</span><span>${htmlEsc(a.date)} · ${htmlEsc(a.time)} phút đọc</span></div>
+        </div>`;
+      insertBefore.parentNode.insertBefore(card, insertBefore);
+    });
+
+    const hasMore = _articlesPage * 6 < _articlesTotal || newArticles.length > 0;
+    btn.textContent = hasMore ? 'Xem thêm bài viết' : 'Đã tải hết bài';
+    btn.disabled = !hasMore;
+  } catch {
+    btn.textContent = 'Xem thêm bài viết'; btn.disabled = false;
+  }
+}
+
+// ══════════════════════════════════════════════
+// NEWSLETTER — gọi API
+// ══════════════════════════════════════════════
+async function nlSidebarSubmit() {
+  const inp   = document.getElementById('nlSidebarEmail');
+  const errEl = document.getElementById('nlSidebarErr');
+  const email = inp?.value.trim() || '';
+  if (!email || !email.includes('@')) {
+    inp?.classList.add('error');
+    if (errEl) errEl.style.display = 'block';
+    return;
+  }
+  const btn = document.getElementById('nlSidebarBtn');
+  if (btn) { btn.textContent = 'Đang đăng ký...'; btn.disabled = true; }
+  try {
+    await api('POST', '/api/newsletter/subscribe', { email, frequency: 'daily', topics: [] });
+    const def = document.getElementById('nlWidgetDefault');
+    const ok  = document.getElementById('nlWidgetSuccess');
+    if (def) def.style.display = 'none';
+    if (ok)  ok.style.display  = 'block';
+  } catch(e) {
+    if (errEl) { errEl.textContent = e.message; errEl.style.display = 'block'; }
+    if (btn) { btn.textContent = 'Đăng ký miễn phí'; btn.disabled = false; }
+  }
+}
+
+function nlSidebarClearError() {
+  const el = document.getElementById('nlSidebarErr');
+  if (el) el.style.display = 'none';
+  document.getElementById('nlSidebarEmail')?.classList.remove('error');
+}
+
+async function handleNlSubmit() {
+  const emailEl = document.getElementById('nlEmail');
+  const email   = emailEl?.value.trim() || '';
+  nlClearError();
+  if (!email || !email.includes('@')) {
+    document.getElementById('nlEmailErr')?.style && (document.getElementById('nlEmailErr').style.display = 'block');
+    emailEl?.classList.add('error');
+    return;
+  }
+  const btn = document.getElementById('nlSubmitBtn');
+  if (btn) { btn.classList.add('loading'); btn.disabled = true; }
+  try {
+    const freq = document.querySelector('input[name="nlFreq"]:checked')?.value || 'daily';
+    const topics = Array.from(document.querySelectorAll('.topic-chip.active input[type=checkbox]'))
+                        .map(cb => cb.value).filter(Boolean);
+    await api('POST', '/api/newsletter/subscribe', { email, frequency: freq, topics });
+    const freqLabel = { daily:'hàng ngày lúc 8:00 sáng', weekly:'hàng tuần vào thứ Hai', breaking:'ngay khi có tin nóng' }[freq];
+    const successMsg = document.getElementById('nlSuccessMsg');
+    if (successMsg) successMsg.textContent = `Bạn đã đăng ký nhận bản tin ${freqLabel}. Kiểm tra email ${email} để xác nhận.`;
+    document.getElementById('nlFormWrap')?.style && (document.getElementById('nlFormWrap').style.display = 'none');
+    document.getElementById('nlSuccessWrap')?.style && (document.getElementById('nlSuccessWrap').style.display = 'block');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  } catch(e) {
+    const errEl = document.getElementById('nlSubmitErr');
+    if (errEl) { errEl.textContent = e.message; errEl.style.display = 'block'; }
+    if (btn) { btn.classList.remove('loading'); btn.disabled = false; }
+  }
+}
+
+function nlClearError() {
+  ['nlEmailErr','nlDupErr','nlSubmitErr'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  document.getElementById('nlEmail')?.classList.remove('error');
+}
+
+function selectNlFreq(freq) {
+  ['nlFreqDaily','nlFreqWeekly','nlFreqBreaking'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.cssText += ';border-color:var(--border);background:none;';
+  });
+  const map = { daily:'nlFreqDaily', weekly:'nlFreqWeekly', breaking:'nlFreqBreaking' };
+  const active = document.getElementById(map[freq]);
+  if (active) active.style.cssText += ';border-color:var(--red);background:#fef2f2;';
+  document.querySelectorAll('input[name="nlFreq"]').forEach(r => { if (r.value===freq) r.checked=true; });
+}
+
+// ══════════════════════════════════════════════
+// SEARCH — gọi API
+// ══════════════════════════════════════════════
+const searchState = {
+  query:   '',
+  filter:  'all',
+  page:    1,
+  perPage: 5,
+  timer:   null,
+  sort:    'relevance',
+  total:   0,
+};
+
+function triggerSearch() {
+  const val = document.getElementById('searchInput')?.value.trim() || '';
+  searchState.query = val;
+  searchState.page  = 1;
+  if (val) renderSearchResults();
+}
+
+function searchDebounce(val) {
+  clearTimeout(searchState.timer);
+  if (!val.trim()) {
+    document.getElementById('searchSuggestions').style.display = 'block';
+    document.getElementById('searchResults').style.display     = 'none';
+    document.getElementById('searchLoading').style.display     = 'none';
+    document.getElementById('searchEmpty').style.display       = 'none';
+    return;
+  }
+  document.getElementById('searchLoading').style.display     = 'block';
+  document.getElementById('searchSuggestions').style.display = 'none';
+  document.getElementById('searchResults').style.display     = 'none';
+  document.getElementById('searchEmpty').style.display       = 'none';
+  searchState.timer = setTimeout(() => {
+    searchState.query = val; searchState.page = 1;
+    renderSearchResults();
+  }, 450);
+}
+
+function setSearchFilter(btn, filter) {
+  document.querySelectorAll('#searchFilters .search-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  searchState.filter = filter; searchState.page = 1;
+  if (searchState.query) renderSearchResults();
+}
+
+function quickSearch(term) {
+  const inp = document.getElementById('searchInput');
+  if (inp) inp.value = term;
+  searchState.query = term; searchState.page = 1;
+  document.getElementById('searchLoading').style.display = 'block';
+  document.getElementById('searchSuggestions').style.display = 'none';
+  setTimeout(() => renderSearchResults(), 300);
+}
+
+function sortResults(val) {
+  searchState.sort = val;
+  if (searchState.query) renderSearchResults();
+}
+
+async function renderSearchResults() {
+  const q = searchState.query;
+  if (!q) return;
+
+  document.getElementById('searchLoading').style.display = 'block';
+  document.getElementById('searchResults').style.display = 'none';
+  document.getElementById('searchEmpty').style.display   = 'none';
+
+  try {
+    const category = searchState.filter !== 'all' ? searchState.filter : undefined;
+    const sort     = searchState.sort === 'views' ? 'views' : searchState.sort === 'date' ? 'date' : undefined;
+    let path = `/api/articles/search?q=${encodeURIComponent(q)}&page=${searchState.page}&limit=${searchState.perPage}`;
+    if (category) path += `&category=${category}`;
+    if (sort)     path += `&sort=${sort}`;
+
+    const data = await api('GET', path);
+    const items = (data.items || []).map(mapArticle);
+    searchState.total = data.total || 0;
+
+    document.getElementById('searchLoading').style.display = 'none';
+
+    if (!items.length) {
+      document.getElementById('searchEmpty').style.display = 'block';
+      const msg = document.getElementById('searchEmptyMsg');
+      if (msg) msg.textContent = `Không tìm thấy kết quả nào cho "${q}". Hãy thử từ khóa khác.`;
+      return;
+    }
+
+    document.getElementById('searchResults').style.display = 'block';
+
+    const meta = document.getElementById('searchMeta');
+    if (meta) meta.innerHTML = `Tìm thấy <strong>${searchState.total} kết quả</strong> cho "<strong>${htmlEsc(q)}</strong>"`;
+
+    // AI summary
+    const aiBox = document.getElementById('aiSummaryBox');
+    const aiTxt = document.getElementById('aiSummaryText');
+    if (aiBox && aiTxt) {
+      aiBox.style.display = 'block';
+      const cats = [...new Set(items.slice(0,3).map(a=>a.cat))].join(', ');
+      aiTxt.textContent = `TechPulse tìm thấy ${searchState.total} bài viết về "${q}". Chủ đề nổi bật: ${cats}.`;
+    }
+
+    function hl(text) {
+      if (!q) return htmlEsc(text);
+      const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+      return htmlEsc(text).replace(re, '<span class="search-highlight">$1</span>');
+    }
+
+    const list = document.getElementById('searchResultsList');
+    if (list) {
+      list.innerHTML = items.map(a => `
+        <div class="search-result-item" onclick="openArticle(${a.id})">
+          <div class="search-result-thumb"><img src="${htmlEsc(a.img)}" alt="" onerror="imgError(this)"></div>
+          <div>
+            <div class="search-result-cat">${htmlEsc(a.cat)}</div>
+            <div class="search-result-title">${hl(a.title)}</div>
+            <div class="search-result-excerpt">${hl(a.excerpt)}</div>
+            <div class="search-result-meta">${htmlEsc(a.date)} · ${htmlEsc(a.time)} phút đọc</div>
+          </div>
+        </div>`).join('');
+    }
+
+    const maxPage = data.pages || Math.ceil(searchState.total / searchState.perPage);
+    const indicator = document.getElementById('pageIndicator');
+    if (indicator) indicator.textContent = `Trang ${searchState.page} / ${maxPage}`;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (prevBtn) prevBtn.disabled = searchState.page <= 1;
+    if (nextBtn) nextBtn.disabled = searchState.page >= maxPage;
+
+  } catch(e) {
+    document.getElementById('searchLoading').style.display = 'none';
+    document.getElementById('searchEmpty').style.display   = 'block';
+    const msg = document.getElementById('searchEmptyMsg');
+    if (msg) msg.textContent = 'Lỗi khi tìm kiếm. Vui lòng thử lại.';
+  }
+}
+
+function searchPage(p) {
+  const maxPage = Math.ceil(searchState.total / searchState.perPage) || 1;
+  if (p < 1 || p > maxPage) return;
+  searchState.page = p;
+  renderSearchResults();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════════
+// CATEGORY & FILTER
+// ══════════════════════════════════════════════
+function filterByCategory(filterKey, label) {
+  showPage('search');
+  const inp = document.getElementById('searchInput');
+  if (inp) inp.value = label;
+  searchState.query  = label;
+  searchState.filter = filterKey;
+  searchState.page   = 1;
+  document.querySelectorAll('#searchFilters .search-filter-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('onclick')?.includes(`'${filterKey}'`) || b.textContent.trim() === label);
+  });
+  document.getElementById('searchLoading').style.display     = 'block';
+  document.getElementById('searchSuggestions').style.display = 'none';
+  setTimeout(() => renderSearchResults(), 300);
+}
+
+function showCategoryPage(label) {
+  const filterMap = {
+    'Mobile':'mobile','AI':'ai','Tin ICT':'tin-ict','Internet':'internet',
+    'Khám phá':'kham-pha','Xe':'xe','Apps & Game':'apps-game',
+    'Đồ chơi số':'do-choi-so','Trà đá CN':'tra-da-cn',
+  };
+  const key = filterMap[label] || 'all';
+  filterByCategory(key, label);
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.classList.remove('active');
+    if (item.querySelector('a')?.textContent.trim() === label) item.classList.add('active');
+  });
+  scrollNavToActive();
+}
+
+function searchByTag(tag) {
+  showPage('search');
+  const inp = document.getElementById('searchInput');
+  if (inp) inp.value = tag;
+  searchState.query = tag; searchState.filter = 'all'; searchState.page = 1;
+  document.getElementById('searchLoading').style.display     = 'block';
+  document.getElementById('searchSuggestions').style.display = 'none';
+  setTimeout(() => renderSearchResults(), 300);
+}
+
+// ━━━ DATE FILTER ━━━
+async function filterByDate() {
+  const day   = document.getElementById('dpDay')?.value;
+  const month = document.getElementById('dpMonth')?.value;
+  const year  = document.getElementById('dpYear')?.value;
+  if (!day || !month) { showToast('Vui lòng chọn ngày và tháng!'); return; }
+  const label = `${day}/${month.replace('T','')}/${year}`;
+  showToast(`Đang tải tin ngày ${label}...`);
+  // Dùng search với date filter (backend chưa có route riêng)
+  searchState.query = label; searchState.page = 1;
+  showPage('search');
+  const inp = document.getElementById('searchInput');
+  if (inp) inp.value = label;
+  setTimeout(() => renderSearchResults(), 300);
+}
+
+// ══════════════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════════════
+function getArticleUrl() {
+  if (_currentArticle) return `${window.location.origin}#detail-${_currentArticle.slug || _currentArticle.id}`;
+  return window.location.href;
+}
+
+function copyLink(type) {
+  const url = getArticleUrl();
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(url).then(() => showToast('Đã sao chép liên kết!')).catch(() => _fallbackCopy(url));
+  } else { _fallbackCopy(url); }
+  // Tăng share count
+  if (_currentArticle) api('POST', `/api/articles/${_currentArticle.id}/share`).catch(()=>{});
+}
+function _fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText='position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast('Đã sao chép liên kết!'); } catch { showToast('Không thể sao chép.'); }
+  document.body.removeChild(ta);
+}
+function shareFacebook() {
+  const url = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(getArticleUrl());
+  try { window.open(url,'_blank','width=600,height=400,noopener,noreferrer'); } catch {}
+  if (_currentArticle) api('POST', `/api/articles/${_currentArticle.id}/share`).catch(()=>{});
+  showToast('Đã mở cửa sổ chia sẻ Facebook!');
+}
+function openExternal(url) {
+  try { window.open(url,'_blank','noopener,noreferrer'); } catch { showToast('Không thể mở liên kết.'); }
+}
+
+// ══════════════════════════════════════════════
+// UI HELPERS
+// ══════════════════════════════════════════════
+function toggleUserDropdown() {
+  document.getElementById('userDropdown').classList.toggle('open');
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#userAvatarBtn')) document.getElementById('userDropdown')?.classList.remove('open');
+  if (!e.target.closest('.nav-item')) document.querySelectorAll('.dropdown').forEach(d => d.style.display='');
+});
+
+function switchProfileTab(name, el) {
+  document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.profile-menu-item').forEach(m => m.classList.remove('active'));
+  document.getElementById('tab-' + name)?.classList.add('active');
+  el.classList.add('active');
+  if (name === 'bookmarks') loadBookmarkList();
+}
+function showProfileTab(tabName) {
+  showPage('profile');
+  setTimeout(() => {
+    const items = document.querySelectorAll('.profile-menu-item');
+    const map   = { overview:0, bookmarks:1, settings:2, password:3, notifications:4 };
+    const idx   = map[tabName];
+    if (idx !== undefined && items[idx]) switchProfileTab(tabName, items[idx]);
+  }, 50);
+}
+
+function showErr(inputId, errId) {
+  if (inputId) document.getElementById(inputId)?.classList.add('error');
+  if (errId)   document.getElementById(errId)?.classList.add('show');
+}
+function clearErrors(...ids) {
+  ids.forEach(id => { const el=document.getElementById(id); if(el) el.classList.remove('error','show'); });
+}
+function togglePw(inputId, btn) {
+  const inp = document.getElementById(inputId);
+  const isText = inp.type === 'text';
+  inp.type = isText ? 'password' : 'text';
+  btn.innerHTML = isText
+    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
+    : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+}
+function checkPwStrength(pw) {
+  const fill = document.getElementById('pwStrengthFill');
+  const text = document.getElementById('pwStrengthText');
+  if (!fill) return;
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  const levels = [
+    {w:'0%',c:'#ef4444',t:'Quá ngắn'},{w:'25%',c:'#ef4444',t:'Yếu'},
+    {w:'50%',c:'#f59e0b',t:'Trung bình'},{w:'75%',c:'#3b82f6',t:'Khá mạnh'},{w:'100%',c:'#22c55e',t:'Mạnh'},
+  ];
+  const lvl = levels[Math.min(score,4)];
+  fill.style.width=lvl.w; fill.style.background=lvl.c;
+  if(text){ text.textContent=lvl.t; text.style.color=lvl.c; }
+}
+
+function showSuccess(icon, title, text, onOk) {
+  const overlay = document.getElementById('successOverlay');
+  document.getElementById('successIcon').textContent  = icon;
+  document.getElementById('successTitle').textContent = title;
+  document.getElementById('successText').textContent  = text;
+  overlay.classList.add('show');
+  const btn = document.getElementById('successBtn');
+  btn.onclick = () => { overlay.classList.remove('show'); if(onOk) onOk(); };
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function updateProgress() {
+  const bar = document.getElementById('readingBar');
+  const detailActive = document.getElementById('detail-page')?.classList.contains('active');
+  if (!detailActive) { if(bar) bar.style.width='0%'; return; }
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total    = doc.scrollHeight - doc.clientHeight;
+  if(bar) bar.style.width = (total > 0 ? scrolled/total*100 : 0) + '%';
+}
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backTop');
+  if (window.scrollY > 400) btn?.classList.add('visible');
+  else btn?.classList.remove('visible');
+  updateProgress();
+}, { passive: true });
+
+function imgError(img) {
+  img.onerror = null;
+  img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"><rect fill="%231a1e28" width="400" height="225"/><text fill="%2364748b" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em">Ảnh không tải được</text></svg>';
+}
+
+function dismissTicker() {
+  document.getElementById('tickerBar')?.classList.add('dismissed');
+}
+(function() {
+  let startY = 0;
+  const el = document.getElementById('tickerBar');
+  if (!el) return;
+  el.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive:true });
+  el.addEventListener('touchend',   e => { if (e.changedTouches[0].clientY - startY < -30) dismissTicker(); }, { passive:true });
+})();
+
+function scrollNavToActive() {
+  const active = document.querySelector('.nav-item.active, .nav-item.hot');
+  const inner  = document.querySelector('.nav-inner');
+  if (active && inner) {
+    const offset = active.offsetLeft - inner.clientWidth/2 + active.offsetWidth/2;
+    inner.scrollTo({ left: offset, behavior: 'smooth' });
+  }
+}
+function updateNavActive(page) {
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  if (page === 'list' || page === 'detail') document.querySelector('.nav-item.hot')?.classList.add('active');
+  scrollNavToActive();
+}
+
+function toggleTopicChip(el) {
+  el.classList.toggle('active');
+  const cb = el.querySelector('input[type=checkbox]');
+  if (cb) cb.checked = el.classList.contains('active');
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+auth.updateUI();
+auth.init().then(() => {
+  // Load homepage khi đang ở list page
+  if (document.getElementById('list-page')?.classList.contains('active')) {
+    loadHomepage();
+  }
+});
+</script>
+</body>
+</html>

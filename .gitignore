@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Database (không commit DB vào git)
+*.db
+*.db-shm
+*.db-wal
+
+# Environment
+.env
+
+# Uploads (ảnh upload từ user)
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
