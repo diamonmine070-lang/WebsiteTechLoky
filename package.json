@@ -5,15 +5,14 @@
   "main": "backend.js",
   "scripts": {
     "start": "node backend.js",
-    "dev": "node --watch backend.js",
-    "build": "npm rebuild better-sqlite3"
+    "dev": "node --watch backend.js"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "20.x"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "better-sqlite3": "^9.4.3",
+    "better-sqlite3": "^11.0.0",
     "cors": "^2.8.5",
     "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",
